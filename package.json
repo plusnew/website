@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
-    "build": "mkdir -p dist && cp public/* dist/."
+    "build": "mkdir -p dist && cp -R public/* dist/."
   },
   "repository": {
     "type": "git",
