@@ -19,7 +19,7 @@ deploy:
     repo: plusnew/website
 
 after_deploy:
-- "curl https://plusnew.io/checkUpdate.php"
+- "curl https://www.plusnew.io/checkUpdate.php"
 
 notifications:
   email:
