@@ -17,3 +17,13 @@ deploy:
   skip_cleanup: true
   on:
     repo: plusnew/website
+
+after_deploy:
+- "curl https://plusnew.io/checkUpdate.php"
+
+notifications:
+  email:
+    recipients:
+      - travis@snew.io
+    on_success: change
+    on_failure: always
