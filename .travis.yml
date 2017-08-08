@@ -9,6 +9,10 @@ install:
 before_deploy:
   - "cd dist && zip -r website.zip * && cd .. "
 
+branches:
+  only:
+  - master
+
 deploy:
   provider: releases
   api_key:
@@ -19,7 +23,7 @@ deploy:
     repo: plusnew/website
 
 after_deploy:
-- "curl https://www.plusnew.io/checkUpdate.php"
+- "curl -u $DEPLOY_USER:$DEPLOY_PASSWORD https://www.plusnew.io/checkUpdate.php"
 
 notifications:
   email:
