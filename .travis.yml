@@ -10,6 +10,10 @@ sudo: required
 before_install:
   - "yarn add coveralls"
 
+script:
+  - yarn run test
+  - yarn run build
+
 after_success:
   - "cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js"
 
@@ -21,11 +25,13 @@ notifications:
     on_failure: always
 
 before_deploy:
-  - "cd dist && zip -r website.zip * && cd .. "
+  - cd dist
+  - zip -r website.zip *
+  - cd ..
 
 branches:
   only:
-  - master
+    - master
 
 deploy:
   provider: releases
@@ -37,4 +43,4 @@ deploy:
     repo: plusnew/website
 
 after_deploy:
-- "curl -u $DEPLOY_USER:$DEPLOY_PASSWORD https://www.plusnew.io/checkUpdate.php"
+  - "curl -u $DEPLOY_USER:$DEPLOY_PASSWORD https://www.plusnew.io/checkUpdate.php"
