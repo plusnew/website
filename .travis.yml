@@ -1,36 +1,48 @@
 language: node_js
+
 dist: trusty
+
 node_js:
-- node
+  - node
+
 sudo: required
+
 before_install:
-- yarn add coveralls
+  - yarn add coveralls
+
 script:
-- yarn run test
-- yarn run build
+  - yarn run test
+  - yarn run build
+
 after_success:
-- cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js
+  - cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js
+
 notifications:
   email:
     recipients:
-    - travis@plusnew.io
+      - travis@plusnew.io
     on_success: change
     on_failure: always
+
 before_deploy:
-- cd dist
-- zip -r website.zip *
-- cd ..
-- export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
-- git tag $TRAVIS_TAG
+  - cd dist
+  - zip -r website.zip *
+  - cd ..
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+  - git tag $TRAVIS_TAG
+
 branches:
   only:
-  - master
+    - master
+
 after_deploy:
-- curl -u $DEPLOY_USER:$DEPLOY_PASSWORD https://www.plusnew.io/checkUpdate.php
+  - curl -u $DEPLOY_USER:$DEPLOY_PASSWORD https://www.plusnew.io/checkUpdate.php
+
 deploy:
   provider: releases
   api_key:
     secure: U6EoNO/TpoCzBGnxwAskYCnKvvgC/8yWmJ7vz/Wljy1Omg5QAp3GmHTon5qSzwhjwnqgB9G8jw4ra8ymvq3G8Gs8wRfyrHyJSE1aQHP/P6xCUkHXKeewfsP5CASfNjbIfjo+tm4RibRRjUtFG+/O1Rhbb7k03iWFhwZz/SUgaC02WN375RMbU1MGvVDXOfgoYnwQEnOtAS2lj3zonoFYYEigIYAUbwZ2vYRTGrrL9nYS/Asv4AFhRyzBFK5g4PjqcS0/t2LdzeqjdHYb9LvboQ2fEJMa60GiXOyGOMfS2+Sv0pUyEzZDybC+G2yBucx0YgXmpo88gIb0+cpDxIGSogx2VDZV+FQxKHhjbny9gF/t4h+3DMktbXpQ3B5BhrQerckxDDN7ZdRZY951pXRWXjx1PAOaLimATBVspM+/0hgXRGzxv5raEAWSny6UL5U4gPB4cnOHzu9rDC3/zUgkC9HHlfgRdXoR9a9Fy76d0BYzRnG7qd6AWrTc9ui6EcY9Qx9mUI4PKDFu6Uqa+MPxO9Y6naPFHZWqpuNg1fNFQQGG7qFhCqCxVnQudyFZ9bPRIaQSj2UUtrH6kPN31xe3F2k3KdUHDXT6kmudtmdQOiK9m9b+kX9boEL9fhMcbmUtahM6+pY30smLxRByrg9Pgx3L9UC2SzXtzv0MMfgCrr4=
   file: src/website.zip
+  skip_cleanup: true
   on:
     tags: true
