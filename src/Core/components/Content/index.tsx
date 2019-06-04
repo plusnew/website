@@ -1,5 +1,5 @@
 import plusnew, { component, Async } from 'plusnew';
-import leadPageContainer from './components/LeadPageContainer';
+import LandingPageRoute from './components/LandingPageRoute';
 import { NotFound, Invalid } from '@plusnew/router';
 import Error from 'shared/Components/Error';
 import Loader from 'shared/Components/Loader';
@@ -8,7 +8,7 @@ export default component(
   __dirname,
   () =>
     <>
-      <leadPageContainer.Component />
+      <LandingPageRoute.Component />
       <NotFound>
         <Async
           pendingIndicator={<div><Loader /></div>}
