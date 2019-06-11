@@ -4,9 +4,10 @@ import enzymeAdapterPlusnew, { mount } from 'enzyme-adapter-plusnew';
 import plusnew from 'plusnew';
 import Loader from 'shared/Components/Loader';
 import LandingPageContent from './components/LandingPageRoute/components/LandingPageContent';
+import DocumentationContent from './components/DocumentationRoute/components/DocumentationContent';
+import ImpressumContent from './components/ImpressumRoute/components/ImpressumContent';
 import Index from './index';
 import { getAwaitAllHandle } from 'test';
-import { NOTFOUND } from 'dns';
 import NotFound from './components/NotFound';
 import Invalid from './components/Invalid';
 
@@ -35,6 +36,64 @@ describe('test <Content />', () => {
     expect(wrapper.containsMatchingElement(
       <LandingPageContent />,
     )).toBe(true);
+
+    expect(document.title).toBe('plusnew | the framework for maintanability');
+  });
+
+  it('documentation page should be present', async () => {
+    const awaitHandle = getAwaitAllHandle();
+    const wrapper = mount(
+      <StaticProvider url="documentation" onchange={() => null}>
+        <Index />
+      </StaticProvider>,
+      {
+        plusnewRenderOptions: {
+          addAsyncListener: awaitHandle.callback,
+        },
+      },
+    );
+
+    expect(document.title).toBe('plusnew | documentation');
+
+    expect(wrapper.containsMatchingElement(
+      <Loader />,
+    )).toBe(true);
+
+    await awaitHandle.done();
+
+    expect(wrapper.containsMatchingElement(
+      <DocumentationContent />,
+    )).toBe(true);
+
+    expect(document.title).toBe('plusnew | documentation');
+  });
+
+  it('Impressum page should be present', async () => {
+    const awaitHandle = getAwaitAllHandle();
+    const wrapper = mount(
+      <StaticProvider url="impressum" onchange={() => null}>
+        <Index />
+      </StaticProvider>,
+      {
+        plusnewRenderOptions: {
+          addAsyncListener: awaitHandle.callback,
+        },
+      },
+    );
+
+    expect(document.title).toBe('plusnew | impressum');
+
+    expect(wrapper.containsMatchingElement(
+      <Loader />,
+    )).toBe(true);
+
+    await awaitHandle.done();
+
+    expect(wrapper.containsMatchingElement(
+      <ImpressumContent />,
+    )).toBe(true);
+
+    expect(document.title).toBe('plusnew | impressum');
   });
 
   it('landing page should be present at root', async () => {
@@ -74,6 +133,8 @@ describe('test <Content />', () => {
       },
     );
 
+    expect(document.title).toBe('plusnew | invalid url');
+
     expect(wrapper.containsMatchingElement(
       <Loader />,
     )).toBe(true);
@@ -83,6 +144,8 @@ describe('test <Content />', () => {
     expect(wrapper.containsMatchingElement(
       <Invalid />,
     )).toBe(true);
+
+    expect(document.title).toBe('plusnew | invalid url');
   });
 
   it('not found page should be present', async () => {
@@ -98,6 +161,8 @@ describe('test <Content />', () => {
       },
     );
 
+    expect(document.title).toBe('plusnew | not found');
+
     expect(wrapper.containsMatchingElement(
       <Loader />,
     )).toBe(true);
@@ -107,5 +172,7 @@ describe('test <Content />', () => {
     expect(wrapper.containsMatchingElement(
       <NotFound />,
     )).toBe(true);
+
+    expect(document.title).toBe('plusnew | not found');
   });
 });
