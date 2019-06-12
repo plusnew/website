@@ -1,11 +1,11 @@
-import DocumentationRoute from 'Core/components/Content/components/DocumentationRoute';
-import LandingPageRoute from 'Core/components/Content/components/LandingPageRoute';
-import ImpressumRoute from 'Core/components/Content/components/ImpressumRoute';
-
 import { StaticProvider } from '@plusnew/router';
+import DocumentationRoute from 'Core/components/Content/components/DocumentationRoute';
+import ImpressumRoute from 'Core/components/Content/components/ImpressumRoute';
+import LandingPageRoute from 'Core/components/Content/components/LandingPageRoute';
 import { configure } from 'enzyme';
 import enzymeAdapterPlusnew, { mount } from 'enzyme-adapter-plusnew';
 import plusnew from 'plusnew';
+import Logo from './components/Logo';
 import Index from './index';
 
 configure({ adapter: new enzymeAdapterPlusnew() });
@@ -32,6 +32,14 @@ describe('test <Header />', () => {
 
     expect(wrapper.containsMatchingElement(
       <ImpressumRoute.Link parameter={{}}>impressum</ImpressumRoute.Link>,
+    )).toBe(true);
+  });
+
+  it('should contain logo', () => {
+    const wrapper = mount(<StaticProvider url="" onchange={() => null}><Index /></StaticProvider>);
+
+    expect(wrapper.containsMatchingElement(
+      <Logo />,
     )).toBe(true);
   });
 });
