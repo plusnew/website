@@ -28,7 +28,7 @@ export default component(
   (Props: Props<props>) =>
     <Props>{props => {
       const curveBeginningOffset = props.size / 3;
-      const curveSize = props.size / 5;
+      const curveSize = props.size / 8;
 
       function getOrigin(position: linePosition) {
         switch (position) {
