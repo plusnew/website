@@ -21,28 +21,14 @@ function isOdd(index: number) {
 export default component(
   __dirname,
   () => {
-    return (
-      <svg width={COLUMNS * SIZE} height={ROWS * SIZE}>
-        <Puzzle
-          x={50}
-          y={50}
-          size={SIZE}
-          top={puzzleSide.hole}
-          right={puzzleSide.flat}
-          bottom={puzzleSide.bulged}
-          left={puzzleSide.flat}
-        />
-      </svg>
-    );
-
 
     return (
-      <svg width={COLUMNS * SIZE} height={ROWS * SIZE}>
+      <svg width={COLUMNS * SIZE + 2} height={ROWS * SIZE + 2}>
         {fill(ROWS, (rowIndex) =>
           fill(COLUMNS, columnIndex =>
             <Puzzle
-              x={columnIndex * SIZE}
-              y={rowIndex * SIZE}
+              x={columnIndex * SIZE + 1}
+              y={rowIndex * SIZE + 1}
               size={SIZE}
 
               top={
@@ -50,6 +36,15 @@ export default component(
                   puzzleSide.flat
                 :
                   isOdd(rowIndex) ?
+                    puzzleSide.hole
+                  :
+                    puzzleSide.bulged
+              }
+              right={
+                isLast(COLUMNS, columnIndex) ?
+                  puzzleSide.flat
+                :
+                  isOdd(columnIndex) ?
                     puzzleSide.bulged
                   :
                     puzzleSide.hole
@@ -63,7 +58,7 @@ export default component(
                   :
                     puzzleSide.bulged
               }
-              right={
+              left={
                 isFirst(columnIndex) ?
                   puzzleSide.flat
                 :
@@ -71,15 +66,6 @@ export default component(
                     puzzleSide.bulged
                   :
                     puzzleSide.hole
-              }
-              left={
-                isLast(COLUMNS, columnIndex) ?
-                  puzzleSide.flat
-                :
-                  isOdd(columnIndex) ?
-                    puzzleSide.hole
-                  :
-                    puzzleSide.bulged
               }
             />
           )

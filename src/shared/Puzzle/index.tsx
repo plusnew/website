@@ -23,12 +23,12 @@ type props = {
   left: puzzleSide,
 };
 
-
 export default component(
   __dirname,
   (Props: Props<props>) =>
     <Props>{props => {
-      const offset = props.size / 3;
+      const curveBeginningOffset = props.size / 3;
+      const curveSize = props.size / 5;
 
       function getOrigin(position: linePosition) {
         switch (position) {
@@ -56,14 +56,42 @@ export default component(
         }
       }
 
+      function getFirstThird(position: linePosition) {
+        switch (position) {
+          case linePosition.top:
+            return { x: props.x + curveBeginningOffset, y: props.y };
+          case linePosition.right:
+            return { x: props.x + props.size, y: props.y + curveBeginningOffset };
+          case linePosition.bottom:
+            return { x: props.x + props.size - curveBeginningOffset, y: props.y + props.size };
+          case linePosition.left:
+            return { x: props.x, y: props.y + props.size - curveBeginningOffset };
+        }
+      }
+
+
+      function getSecondThird(position: linePosition) {
+        switch (position) {
+          case linePosition.top:
+            return { x: props.x + props.size - curveBeginningOffset, y: props.y };
+          case linePosition.right:
+            return { x: props.x + props.size, y: props.y + props.size - curveBeginningOffset };
+          case linePosition.bottom:
+            return { x: props.x + curveBeginningOffset, y: props.y + props.size };
+          case linePosition.left:
+            return { x: props.x, y: props.y + curveBeginningOffset };
+        }
+      }
+
       function draw(position: linePosition, lineType: puzzleSide, ) {
 
         const origin = getOrigin(position);
         const destination = getDestination(position);
+        const firstThird = getFirstThird(position);
+        const secondThird = getSecondThird(position);
         const halfX = Math.abs((destination.x - origin.x) / 2) + props.x;
-        const halfY = (destination.y - origin.y) / 2 + props.y;
+        const halfY = Math.abs((destination.y - origin.y) / 2) + props.y;
 
-        console.log(halfX)
         switch (lineType) {
           // Border of the puzzle
           case puzzleSide.flat: {
@@ -72,71 +100,47 @@ export default component(
           }
 
           // bulged puzzle piece
-          case puzzleSide.bulged: {
+          case puzzleSide.bulged:
+          case puzzleSide.hole:
 
-            switch (position) {
-              case linePosition.top:
-                return [
-                  // Go a 1/3 right to the middle
-                  `L ${origin.x + offset} ${origin.y}`,
-                  // cubic curve to top
-                  `Q ${origin.x} ${origin.y - offset} ${halfX} ${origin.y - offset}`,
-                  // same curve to the 2/3 of the middle
-                  `T ${destination.x - offset} ${destination.y}`,
-                  // Go to the right corner
-                  `L ${destination.x} ${destination.y}`,
-                ].join(' ');
-              case linePosition.right:
-                return ``;
-              case linePosition.bottom:
-                return [
-                  // Go a 1/3 left to the middle
-                  `L ${origin.x - offset} ${origin.y}`,
-                  // cubic curve to top
-                  `Q ${origin.x} ${origin.y + offset} ${halfX} ${origin.y + offset}`,
-                  // same curve to the 2/3 of the middle
-                  `T ${destination.x + offset} ${destination.y}`,
-                  // Go to the left corner
-                  `L ${destination.x} ${destination.y}`,
-                ].join(' ');
-              case linePosition.left:
-                return ``;
-              default: throw new Error('no such position known');
-            }
-          }
-
-          // inverted bulge puzzle piece
-          case puzzleSide.hole: {
-            switch (position) {
-              case linePosition.top:
-                return [
-                  // Go a 1/3 right to the middle
-                  `L ${origin.x + offset} ${origin.y}`,
-                  // cubic curve to top
-                  `Q ${origin.x} ${origin.y + offset} ${halfX} ${origin.y + offset}`,
-                  // same curve to the 2/3 of the middle
-                  `T ${destination.x - offset} ${destination.y}`,
-                  // Go to the right corner
-                  `L ${destination.x} ${destination.y}`,
-                ].join(' ');
-              case linePosition.right:
-                return ``;
-              case linePosition.bottom:
-                return [
-                  // Go a 1/3 left to the middle
-                  `L ${origin.x - offset} ${origin.y}`,
-                  // cubic curve to top
-                  `Q ${origin.x} ${origin.y - offset} ${halfX} ${origin.y - offset}`,
-                  // same curve to the 2/3 of the middle
-                  `T ${destination.x + offset} ${destination.y}`,
-                  // Go to the left corner
-                  `L ${destination.x} ${destination.y}`,
-                ].join(' ');
-              case linePosition.left:
-                return ``;
-              default: throw new Error('no such position known');
-            }
-          }
+            return [
+              // Go a 1/3 right to the middle
+              `L ${firstThird.x} ${firstThird.y}`,
+              // cubic curve to top
+              (() => {
+                switch (position) {
+                  case linePosition.top:
+                    if (lineType === puzzleSide.bulged) {
+                      return `Q ${origin.x} ${origin.y - curveSize} ${halfX} ${origin.y - curveSize}`;
+                    } else {
+                      return `Q ${origin.x} ${origin.y + curveSize} ${halfX} ${origin.y + curveSize}`;
+                    }
+                  case linePosition.right:
+                    if (lineType === puzzleSide.bulged) {
+                      return `Q ${origin.x + curveSize} ${origin.y} ${origin.x + curveSize} ${halfY}`;
+                    } else {
+                      return `Q ${origin.x - curveSize} ${origin.y} ${origin.x - curveSize} ${halfY}`;
+                    }
+                  case linePosition.bottom:
+                    if (lineType === puzzleSide.bulged) {
+                      return `Q ${origin.x} ${origin.y + curveSize} ${halfX} ${origin.y + curveSize}`;
+                    } else {
+                      return `Q ${origin.x} ${origin.y - curveSize} ${halfX} ${origin.y - curveSize}`;
+                    }
+                  case linePosition.left:
+                  if (lineType === puzzleSide.bulged) {
+                    return `Q ${origin.x - curveSize} ${origin.y} ${origin.x - curveSize} ${halfY}`;
+                  } else {
+                    return `Q ${origin.x + curveSize} ${origin.y} ${origin.x + curveSize} ${halfY}`;
+                    
+                  }
+                }
+              })(),
+              // same curve to the 2/3 of the middle
+              `T ${secondThird.x} ${secondThird.y}`,
+              // Go to the right corner
+              `L ${destination.x} ${destination.y}`,
+            ].join(' ');
         }
       }
 
