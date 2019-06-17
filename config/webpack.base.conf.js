@@ -75,6 +75,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join('public', 'index.html')
     }),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+      chunkFilename: 'css/[name].bundle.css',
+    }),
   ],
   externals: [
     function (context, request, callback) {
