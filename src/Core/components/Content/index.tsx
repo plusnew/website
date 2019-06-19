@@ -4,7 +4,7 @@ import Error from 'shared/Components/Error';
 import Loader from 'shared/Components/Loader';
 import DocumentationRoute from './components/DocumentationRoute';
 import LandingPageRoute from './components/LandingPageRoute';
-import ImpressumRoute from './components/ImpressumRoute';
+import AboutRoute from './components/AboutRoute';
 import DocumentTitle from 'shared/Components/DocumentTitle';
 
 export default component(
@@ -13,7 +13,7 @@ export default component(
     <>
       <LandingPageRoute.Component />
       <DocumentationRoute.Component />
-      <ImpressumRoute.Component />
+      <AboutRoute.Component />
       <NotFound>
         <>
           <DocumentTitle value="plusnew | not found" />

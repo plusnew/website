@@ -5,7 +5,7 @@ import plusnew from 'plusnew';
 import Loader from 'shared/Components/Loader';
 import LandingPageContent from './components/LandingPageRoute/components/LandingPageContent';
 import DocumentationContent from './components/DocumentationRoute/components/DocumentationContent';
-import ImpressumContent from './components/ImpressumRoute/components/ImpressumContent';
+import AboutContent from './components/AboutRoute/components/AboutContent';
 import Index from './index';
 import { getAwaitAllHandle } from 'test';
 import NotFound from './components/NotFound';
@@ -68,10 +68,10 @@ describe('test <Content />', () => {
     expect(document.title).toBe('plusnew | documentation');
   });
 
-  it('Impressum page should be present', async () => {
+  it('About page should be present', async () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
-      <StaticProvider url="impressum" onchange={() => null}>
+      <StaticProvider url="about" onchange={() => null}>
         <Index />
       </StaticProvider>,
       {
@@ -81,7 +81,7 @@ describe('test <Content />', () => {
       },
     );
 
-    expect(document.title).toBe('plusnew | impressum');
+    expect(document.title).toBe('plusnew | about');
 
     expect(wrapper.containsMatchingElement(
       <Loader />,
@@ -90,10 +90,10 @@ describe('test <Content />', () => {
     await awaitHandle.done();
 
     expect(wrapper.containsMatchingElement(
-      <ImpressumContent />,
+      <AboutContent />,
     )).toBe(true);
 
-    expect(document.title).toBe('plusnew | impressum');
+    expect(document.title).toBe('plusnew | about');
   });
 
   it('landing page should be present at root', async () => {

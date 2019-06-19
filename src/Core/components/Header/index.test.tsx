@@ -1,6 +1,6 @@
 import { StaticProvider } from '@plusnew/router';
 import DocumentationRoute from 'Core/components/Content/components/DocumentationRoute';
-import ImpressumRoute from 'Core/components/Content/components/ImpressumRoute';
+import AboutRoute from 'Core/components/Content/components/AboutRoute';
 import LandingPageRoute from 'Core/components/Content/components/LandingPageRoute';
 import { configure } from 'enzyme';
 import enzymeAdapterPlusnew, { mount } from 'enzyme-adapter-plusnew';
@@ -26,11 +26,11 @@ describe('test <Header />', () => {
     )).toBe(true);
   });
 
-  it('should contain impressum page', () => {
+  it('should contain about page', () => {
     const wrapper = mount(<StaticProvider url="" onchange={() => null}><Index /></StaticProvider>);
 
     expect(wrapper.containsMatchingElement(
-      <ImpressumRoute.Link parameter={{}}>impressum</ImpressumRoute.Link>,
+      <AboutRoute.Link parameter={{}}>about</AboutRoute.Link>,
     )).toBe(true);
   });
 });

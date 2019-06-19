@@ -1,7 +1,7 @@
 import plusnew, { component } from 'plusnew';
 import DocumentationRoute from 'Core/components/Content/components/DocumentationRoute';
 import LandingPageRoute from 'Core/components/Content/components/LandingPageRoute';
-import ImpressumRoute from 'Core/components/Content/components/ImpressumRoute';
+import AboutRoute from 'Core/components/Content/components/AboutRoute';
 import styles from './header.scss';
 
 export default component(
@@ -11,7 +11,7 @@ export default component(
       <ul>
         <li><LandingPageRoute.Link parameter={{}}>plusnew</LandingPageRoute.Link></li>
         <li><DocumentationRoute.Link parameter={{}}>documentation</DocumentationRoute.Link></li>
-        <li><ImpressumRoute.Link parameter={{}}>impressum</ImpressumRoute.Link></li>
+        <li><AboutRoute.Link parameter={{}}>about</AboutRoute.Link></li>
       </ul>
     </div>
 );

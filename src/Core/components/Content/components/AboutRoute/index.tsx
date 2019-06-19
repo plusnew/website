@@ -8,12 +8,12 @@ const Container = component(
   __dirname,
   () =>
     <>
-      <DocumentTitle value="plusnew | impressum" />
+      <DocumentTitle value="plusnew | about" />
       <Async
         pendingIndicator={<div><Loader /></div>}
       >{() =>
         // tslint:disable-next-line: space-in-parens
-        import(/* webpackChunkName: "site/impressum" */ './components/ImpressumContent')
+        import(/* webpackChunkName: "site/about" */ './components/AboutContent')
           .then(module => <module.default />)
           .catch(() => <Error message="Could not load" />)
         }</Async>
@@ -21,7 +21,7 @@ const Container = component(
 );
 
 export default createRoute(
-  ['impressum'],
+  ['about'],
   {},
   Container,
 );
