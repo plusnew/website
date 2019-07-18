@@ -5,6 +5,7 @@ import Loader from 'shared/Components/Loader';
 import DocumentationRoute from './components/DocumentationRoute';
 import LandingPageRoute from './components/LandingPageRoute';
 import AboutRoute from './components/AboutRoute';
+import GuideRoute from './components/GuideRoute';
 import DocumentTitle from 'shared/Components/DocumentTitle';
 import styles from './content.scss';
 
@@ -15,6 +16,7 @@ export default component(
       <LandingPageRoute.Component />
       <DocumentationRoute.Component />
       <AboutRoute.Component />
+      <GuideRoute.Component />
       <NotFound>
         <>
           <DocumentTitle value="plusnew | not found" />

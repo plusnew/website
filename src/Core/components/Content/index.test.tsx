@@ -5,6 +5,7 @@ import plusnew from 'plusnew';
 import Loader from 'shared/Components/Loader';
 import LandingPageContent from './components/LandingPageRoute/components/LandingPageContent';
 import DocumentationContent from './components/DocumentationRoute/components/DocumentationContent';
+import GuideContent from './components/GuideRoute/components/GuideContent';
 import AboutContent from './components/AboutRoute/components/AboutContent';
 import Index from './index';
 import { getAwaitAllHandle } from 'test';
@@ -66,6 +67,35 @@ describe('test <Content />', () => {
     )).toBe(true);
 
     expect(document.title).toBe('plusnew | documentation');
+  });
+
+
+  it('guide page should be present', async () => {
+    const awaitHandle = getAwaitAllHandle();
+    const wrapper = mount(
+      <StaticProvider url="guide" onchange={() => null}>
+        <Index />
+      </StaticProvider>,
+      {
+        plusnewRenderOptions: {
+          addAsyncListener: awaitHandle.callback,
+        },
+      },
+    );
+
+    expect(document.title).toBe('plusnew | guide');
+
+    expect(wrapper.containsMatchingElement(
+      <Loader />,
+    )).toBe(true);
+
+    await awaitHandle.done();
+
+    expect(wrapper.containsMatchingElement(
+      <GuideContent />,
+    )).toBe(true);
+
+    expect(document.title).toBe('plusnew | guide');
   });
 
   it('About page should be present', async () => {

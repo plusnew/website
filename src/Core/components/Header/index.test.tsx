@@ -1,5 +1,6 @@
 import { StaticProvider } from '@plusnew/router';
 import DocumentationRoute from 'Core/components/Content/components/DocumentationRoute';
+import GuideRoute from 'Core/components/Content/components/GuideRoute';
 import AboutRoute from 'Core/components/Content/components/AboutRoute';
 import LandingPageRoute from 'Core/components/Content/components/LandingPageRoute';
 import { configure } from 'enzyme';
@@ -23,6 +24,14 @@ describe('test <Header />', () => {
 
     expect(wrapper.containsMatchingElement(
       <DocumentationRoute.Link parameter={{}}>documentation</DocumentationRoute.Link>,
+    )).toBe(true);
+  });
+
+  it('should contain Guide page', () => {
+    const wrapper = mount(<StaticProvider url="" onchange={() => null}><Index /></StaticProvider>);
+
+    expect(wrapper.containsMatchingElement(
+      <GuideRoute.Link parameter={{}}>guide</GuideRoute.Link>,
     )).toBe(true);
   });
 
