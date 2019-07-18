@@ -1,9 +1,10 @@
 import plusnew, { component } from 'plusnew';
+import styles from './footer.scss';
 
 export default component(
   __dirname,
   () =>
-    <span>
+    <footer className={styles.footer}>
       footer
-    </span>,
+    </footer>,
 );

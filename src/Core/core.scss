@@ -1,0 +1,10 @@
+.app {
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer"
+  ;
+  height: 100%;
+}

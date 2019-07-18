@@ -6,11 +6,12 @@ import DocumentationRoute from './components/DocumentationRoute';
 import LandingPageRoute from './components/LandingPageRoute';
 import AboutRoute from './components/AboutRoute';
 import DocumentTitle from 'shared/Components/DocumentTitle';
+import styles from './content.scss';
 
 export default component(
   __dirname,
   () =>
-    <>
+    <article className={styles.content}>
       <LandingPageRoute.Component />
       <DocumentationRoute.Component />
       <AboutRoute.Component />
@@ -41,5 +42,5 @@ export default component(
             }</Async>
         </>
       </Invalid>
-    </>,
+    </article>,
 );

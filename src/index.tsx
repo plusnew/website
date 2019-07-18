@@ -1,4 +1,4 @@
 import plusnew from 'plusnew';
 import Core from './Core';
 
-plusnew.render(<Core />,  document.getElementById('app') as HTMLElement);
+plusnew.render(<Core />,  document.body);
