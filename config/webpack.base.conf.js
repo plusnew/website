@@ -3,15 +3,16 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin').default;
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 module.exports = {
   entry: ['./src/index.tsx'],
   mode: 'development',
   output: {
     path: __dirname + '/../dist',
-    filename: 'js/[name].js',
-    chunkFilename: 'js/[name].bundle.js',
+    filename: 'js/[name].[hash].js',
+    chunkFilename: 'js/[name].[hash].bundle.js',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -73,11 +74,15 @@ module.exports = {
       cleanOnceBeforeBuildPatterns: [path.join(__dirname, '..', 'dist')],
     }),
     new HtmlWebpackPlugin({
+      inject: 'head',
       template: path.join('public', 'index.html')
     }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'defer'
+    }),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
-      chunkFilename: 'css/[name].bundle.css',
+      filename: 'css/[name].[hash].css',
+      chunkFilename: 'css/[name].[hash].bundle.css',
     }),
   ],
   externals: [
