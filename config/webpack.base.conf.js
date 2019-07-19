@@ -1,5 +1,4 @@
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin').default;
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -7,7 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 module.exports = {
-  entry: ['./src/index.tsx'],
+  context: path.join(__dirname, '..', 'src'),
+  entry: ['./index.tsx'],
   mode: 'development',
   output: {
     path: __dirname + '/../dist',
@@ -47,6 +47,17 @@ module.exports = {
         ],
       },
       {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[hash].[ext]',
+            },
+          },
+        ],
+      },
+      {
         test: /\.tsx?$/,
         loader: 'awesome-typescript-loader',
       },
@@ -64,19 +75,12 @@ module.exports = {
     }
   },
   plugins: [
-    new CopyWebpackPlugin([
-      { from: 'public' },
-      {
-        from: require.resolve('plusnew'),
-        to: 'plusnew.js',
-      }
-    ]),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [path.join(__dirname, '..', 'dist')],
     }),
     new HtmlWebpackPlugin({
+      title: 'plusnew app',
       inject: 'head',
-      template: path.join('public', 'index.html')
     }),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'defer'

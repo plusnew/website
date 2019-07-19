@@ -4,6 +4,7 @@ import GuideRoute from 'Core/components/Content/components/GuideRoute';
 import LandingPageRoute from 'Core/components/Content/components/LandingPageRoute';
 import AboutRoute from 'Core/components/Content/components/AboutRoute';
 import styles from './header.scss';
+import github from './github.png';
 
 export default component(
   __dirname,
@@ -15,6 +16,10 @@ export default component(
         <GuideRoute.Link parameter={{}}>guide</GuideRoute.Link>
         <AboutRoute.Link parameter={{}}>about</AboutRoute.Link>
       </nav>
-      <div className={styles.external}>Github</div>
+      <div className={styles.external}>
+        <a href="https://github.com/plusnew/plusnew" target="_blank">
+          <img src={github} />
+        </a>
+      </div>
     </header>
 );
