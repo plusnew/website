@@ -13,6 +13,7 @@ module.exports = {
     path: __dirname + '/../dist',
     filename: 'js/[name].[hash].js',
     chunkFilename: 'js/[name].[hash].bundle.js',
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
