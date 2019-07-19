@@ -9,11 +9,12 @@ export default component(
   __dirname,
   () =>
     <header className={styles.header}>
-      <ul>
-        <li><LandingPageRoute.Link parameter={{}}>plusnew</LandingPageRoute.Link></li>
-        <li><DocumentationRoute.Link parameter={{}}>documentation</DocumentationRoute.Link></li>
-        <li><GuideRoute.Link parameter={{}}>guide</GuideRoute.Link></li>
-        <li><AboutRoute.Link parameter={{}}>about</AboutRoute.Link></li>
-      </ul>
+      <h1><LandingPageRoute.Link parameter={{}}>+ plusnew</LandingPageRoute.Link></h1>
+      <nav>
+        <DocumentationRoute.Link parameter={{}}>documentation</DocumentationRoute.Link>
+        <GuideRoute.Link parameter={{}}>guide</GuideRoute.Link>
+        <AboutRoute.Link parameter={{}}>about</AboutRoute.Link>
+      </nav>
+      <div className={styles.external}>Github</div>
     </header>
 );

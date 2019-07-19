@@ -1,3 +1,32 @@
 .header {
   grid-area: header;
+  display: grid;
+  align-items: baseline;
+  grid-auto-flow: column;
+  grid-gap: 1rem;
+  grid-template-columns: max-content max-content 1fr;
+
+  :global .router__link {
+    color: #333333; // @TODO add color variables
+    text-decoration: none;
+
+    &:hover{
+      color: #999999;
+    }
+
+    &.router__link--active{
+      color: coral;
+    }
+  }
+
+  nav {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 1rem;
+  }
+
+  .external {
+    justify-self: end
+  }
 }
+

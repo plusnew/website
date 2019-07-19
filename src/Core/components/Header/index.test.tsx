@@ -15,7 +15,7 @@ describe('test <Header />', () => {
     const wrapper = mount(<StaticProvider url="" onchange={() => null}><Index /></StaticProvider>);
 
     expect(wrapper.containsMatchingElement(
-      <LandingPageRoute.Link parameter={{}}>plusnew</LandingPageRoute.Link>,
+      <LandingPageRoute.Link parameter={{}}>&lt;/&gt; plusnew</LandingPageRoute.Link>,
     )).toBe(true);
   });
 
