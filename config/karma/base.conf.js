@@ -1,4 +1,4 @@
-var webpackConfig = require("./webpack.test.conf.js");
+var webpackConfig = require("../webpack/test.conf.js");
 var path = require('path');
 
 module.exports = function karmaConfig(config) {
