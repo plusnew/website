@@ -1,12 +1,12 @@
 import { Invalid, NotFound } from '@plusnew/router';
 import plusnew, { Async, component } from 'plusnew';
-import Error from 'shared/Components/Error';
-import Loader from 'shared/Components/Loader';
-import DocumentationRoute from './components/DocumentationRoute';
-import LandingPageRoute from './components/LandingPageRoute';
-import AboutRoute from './components/AboutRoute';
-import GuideRoute from './components/GuideRoute';
 import DocumentTitle from 'shared/Components/DocumentTitle';
+import Error from 'shared/Components/Error/index';
+import Loader from 'shared/Components/Loader';
+import AboutRoute from './components/AboutRoute';
+import DocumentationRoute from './components/DocumentationRoute';
+import GuideRoute from './components/GuideRoute';
+import LandingPageRoute from './components/LandingPageRoute';
 import styles from './content.scss';
 
 export default component(

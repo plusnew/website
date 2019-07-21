@@ -6,11 +6,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 module.exports = {
-  context: path.join(__dirname, '..', 'src'),
+  context: path.join(__dirname, '..', '..', 'src'),
   entry: ['./index.tsx'],
   mode: 'development',
   output: {
-    path: __dirname + '/../dist',
+    path: path.join(__dirname, '..', '..', 'dist'),
     filename: 'js/[name].[hash].js',
     chunkFilename: 'js/[name].[hash].bundle.js',
     publicPath: '/'
@@ -76,7 +76,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: [path.join(__dirname, '..', 'dist')],
+      cleanOnceBeforeBuildPatterns: [path.join(__dirname, '..', '..', 'dist')],
     }),
     new HtmlWebpackPlugin({
       title: 'plusnew app',

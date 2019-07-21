@@ -8,7 +8,7 @@ import DocumentationContent from './components/DocumentationRoute/components/Doc
 import GuideContent from './components/GuideRoute/components/GuideContent';
 import AboutContent from './components/AboutRoute/components/AboutContent';
 import Index from './index';
-import { getAwaitAllHandle } from 'test';
+import { getAwaitAllHandle } from 'testHelper';
 import NotFound from './components/NotFound';
 import Invalid from './components/Invalid';
 
