@@ -5974,9 +5974,9 @@ pkg-dir@^3.0.0:
     find-up "^3.0.0"
 
 plusnew@^0.6.47:
-  version "0.6.47"
-  resolved "https://registry.yarnpkg.com/plusnew/-/plusnew-0.6.47.tgz#8a2d295982f55f434fe60d44f490b21fd09cd939"
-  integrity sha512-q96z/KVln6ggTOFvll0hhLiA9wA1ImqO3XrvfsW9l+G8WXnE0O8URh/S2CYBE8lbfIrx8t0alY+8hlvR/x8fQA==
+  version "0.6.50"
+  resolved "https://registry.yarnpkg.com/plusnew/-/plusnew-0.6.50.tgz#61e83aa089878f66099214ffbc200f8e26e1890e"
+  integrity sha512-ITT2Y4/XcMxLrFvAZVUJhYCnb7QQ6XW7/bAv4Q0wESTpVY4ySNLWflxJLkfW9Baj4HwF98heh/5jFP1uyQmhfw==
 
 pn@^1.1.0:
   version "1.1.0"
