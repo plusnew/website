@@ -1,16 +1,20 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const BabelMultiTargetPlugin = require('webpack-babel-multi-target-plugin').BabelMultiTargetPlugin;
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+
+const PROJECT_ROOT = path.join(__dirname, '..', '..',);
 
 module.exports = {
-  context: path.join(__dirname, '..', '..', 'src'),
+  context: path.join(PROJECT_ROOT, 'src'),
   entry: ['./index.tsx'],
   mode: 'development',
   output: {
-    path: path.join(__dirname, '..', '..', 'dist'),
+    path: path.join(PROJECT_ROOT, 'dist'),
     filename: 'js/[name].[hash].js',
     chunkFilename: 'js/[name].[hash].bundle.js',
     publicPath: '/'
@@ -25,14 +29,16 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          // MiniCssExtractPlugin.loader,
+          {
+            loader: 'style-loader'
+          },
           {
             loader: 'css-loader',
             options: {
               sourceMap: true,
               modules: {
                 localIdentName: '[local]--[hash:base64:5]',
-                
               },
               localsConvention: 'camelCase',
             }
@@ -55,7 +61,9 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
+        use: [
+          BabelMultiTargetPlugin.loader(),
+        ]
       },
     ]
   },
@@ -71,33 +79,59 @@ module.exports = {
     }
   },
   plugins: [
+
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [path.join(__dirname, '..', '..', 'dist')],
     }),
+
     new HtmlWebpackPlugin({
       title: 'plusnew app',
       inject: 'head',
     }),
+
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'defer'
     }),
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].[hash].css',
-      chunkFilename: 'css/[name].[hash].bundle.css',
-    }),
-  ],
-  externals: [
-    function (context, request, callback) {
-      const contextParts = path.parse(context);
-      if (request === 'enzyme' && contextParts.base !== 'karma') {
-        return callback(null, request);
-      } else if (request === '__dirname') { // This module creates a string for each module, in what directory it is existent
-        // const dirname = context.slice(path.resolve(__dirname, '../../src').length + 1);
 
-        const lastDir = path.parse(context).name;
-        return callback(null, JSON.stringify({ default: lastDir }));
-      }
-      callback();
-    },
+    // new MiniCssExtractPlugin({
+    //   filename: 'css/[name].[hash].css',
+    //   chunkFilename: 'css/[name].[hash].bundle.css',
+    // }),
+
+    new BabelMultiTargetPlugin({
+      babel: {
+        plugins: [
+          [
+            '@babel/plugin-transform-react-jsx',
+            {
+              pragma: 'plusnew.createElement',
+              pragmaFrag: 'plusnew.Fragment',
+              throwIfNamespace: false,
+            },
+          ],
+          [
+            '@babel/plugin-transform-typescript',
+            {
+              isTSX: true,
+              jsxPragma: 'plusnew'
+            }
+          ],
+        ],
+      },
+      targets: {
+        modern: {
+          key: 'modern',
+          tagAssetsWithKey: true,
+        },
+        legacy: {
+          key: 'legacy',
+          tagAssetsWithKey: true,
+        },
+      },
+    }),
+
+    new ForkTsCheckerWebpackPlugin({
+      tsconfig: path.join(PROJECT_ROOT, 'tsconfig.json'),
+    }),
   ],
 };
