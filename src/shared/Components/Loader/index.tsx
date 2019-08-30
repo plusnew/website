@@ -1,4 +1,4 @@
-import { component, Props } from 'plusnew';
+import { component, Props } from '@plusnew/core';
 
 type props = {};
 

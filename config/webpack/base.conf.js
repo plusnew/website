@@ -1,5 +1,5 @@
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin').default;
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -30,19 +30,15 @@ module.exports = {
             loader: 'css-loader',
             options: {
               sourceMap: true,
-              modules: true,
-              localIdentName: '[local]--[hash:base64:5]',
-              camelCase: true,
+              modules: {
+                localIdentName: '[local]--[hash:base64:5]',
+                
+              },
+              localsConvention: 'camelCase',
             }
           },
           {
             loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-              sourceMapContents: false,
-              modules: true,
-              localIdentName: '[local]--[hash:base64:5]',
-            },
           },
         ],
       },

@@ -1,5 +1,5 @@
 import { Invalid, NotFound } from '@plusnew/router';
-import plusnew, { Async, component } from 'plusnew';
+import plusnew, { Async, component } from '@plusnew/core';
 import DocumentTitle from 'shared/Components/DocumentTitle';
 import Error from 'shared/Components/Error/index';
 import Loader from 'shared/Components/Loader';

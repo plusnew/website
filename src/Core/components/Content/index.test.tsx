@@ -1,7 +1,7 @@
 import { StaticProvider } from '@plusnew/router';
 import { configure } from 'enzyme';
-import enzymeAdapterPlusnew, { mount } from 'enzyme-adapter-plusnew';
-import plusnew from 'plusnew';
+import enzymeAdapterPlusnew, { mount } from '@plusnew/enzyme-adapter';
+import plusnew from '@plusnew/core';
 import Loader from 'shared/Components/Loader';
 import LandingPageContent from './components/LandingPageRoute/components/LandingPageContent';
 import DocumentationContent from './components/DocumentationRoute/components/DocumentationContent';
@@ -18,7 +18,7 @@ describe('test <Content />', () => {
   it('landing page should be present', async () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
-      <StaticProvider url="landingPage" onchange={() => null}>
+      <StaticProvider url="/" onchange={() => null}>
         <Index />
       </StaticProvider>,
       {
@@ -68,7 +68,6 @@ describe('test <Content />', () => {
 
     expect(document.title).toBe('plusnew | documentation');
   });
-
 
   it('guide page should be present', async () => {
     const awaitHandle = getAwaitAllHandle();
@@ -153,7 +152,7 @@ describe('test <Content />', () => {
   it('invalid page should be present, when given weird parameters', async () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
-      <StaticProvider url="/landingPage?invalid=parameter" onchange={() => null}>
+      <StaticProvider url="/?invalid=parameter" onchange={() => null}>
         <Index />
       </StaticProvider>,
       {

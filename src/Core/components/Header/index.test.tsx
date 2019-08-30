@@ -4,8 +4,8 @@ import GuideRoute from 'Core/components/Content/components/GuideRoute';
 import AboutRoute from 'Core/components/Content/components/AboutRoute';
 import LandingPageRoute from 'Core/components/Content/components/LandingPageRoute';
 import { configure } from 'enzyme';
-import enzymeAdapterPlusnew, { mount } from 'enzyme-adapter-plusnew';
-import plusnew from 'plusnew';
+import enzymeAdapterPlusnew, { mount } from '@plusnew/enzyme-adapter';
+import plusnew from '@plusnew/core';
 import Index from './index';
 
 configure({ adapter: new enzymeAdapterPlusnew() });

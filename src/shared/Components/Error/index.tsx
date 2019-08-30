@@ -1,4 +1,4 @@
-import plusnew, { component, Props } from 'plusnew';
+import plusnew, { component, Props } from '@plusnew/core';
 
 type props = {
   message: string,

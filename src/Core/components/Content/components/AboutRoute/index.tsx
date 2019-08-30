@@ -1,12 +1,12 @@
 import { createRoute } from '@plusnew/router';
-import plusnew, { Async, component } from 'plusnew';
+import plusnew, { Async, component, Props } from '@plusnew/core';
 import Error from 'shared/Components/Error';
 import Loader from 'shared/Components/Loader';
 import DocumentTitle from 'shared/Components/DocumentTitle';
 
 const Container = component(
   __dirname,
-  () =>
+  (_Props: Props<{props: {}, parameter: {}}>) =>
     <>
       <DocumentTitle value="plusnew | about" />
       <Async
@@ -21,7 +21,7 @@ const Container = component(
 );
 
 export default createRoute(
-  ['about'],
+  'about',
   {},
   Container,
 );

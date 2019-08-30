@@ -1,6 +1,6 @@
-import enzymeAdapterPlusnew, { mount } from 'enzyme-adapter-plusnew';
+import enzymeAdapterPlusnew, { mount } from '@plusnew/enzyme-adapter';
 import { configure } from 'enzyme';
-import plusnew from 'plusnew';
+import plusnew from '@plusnew/core';
 import Index from './index';
 import Header from './components/Header';
 import Content from './components/Content';

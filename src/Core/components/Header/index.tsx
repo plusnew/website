@@ -1,4 +1,4 @@
-import plusnew, { component } from 'plusnew';
+import plusnew, { component } from '@plusnew/core';
 import DocumentationRoute from 'Core/components/Content/components/DocumentationRoute';
 import GuideRoute from 'Core/components/Content/components/GuideRoute';
 import LandingPageRoute from 'Core/components/Content/components/LandingPageRoute';
