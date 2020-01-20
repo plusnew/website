@@ -15,7 +15,7 @@
   "author": "",
   "dependencies": {
     "@plusnew/core": "^0.6.59",
-    "@plusnew/router": "^0.6.61"
+    "@plusnew/router": "^0.7.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.5",
