@@ -101,6 +101,7 @@ module.exports = {
     new BabelMultiTargetPlugin({
       babel: {
         plugins: [
+          "@babel/plugin-proposal-class-properties",
           [
             '@babel/plugin-transform-react-jsx',
             {
@@ -126,7 +127,7 @@ module.exports = {
         legacy: {
           key: 'legacy',
           tagAssetsWithKey: true,
-        },
+        }
       },
     }),
 

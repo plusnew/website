@@ -20,10 +20,8 @@ config.module.rules.push({
   }
 });
 
-config.optimization = {};
+config.optimization = {
+  splitChunks: undefined
+};
 
-config.externals = [
-  //...config.externals,
-  'plusnew',
-]
 module.exports = config;

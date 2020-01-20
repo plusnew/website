@@ -18,11 +18,13 @@
     "@plusnew/router": "^0.6.61"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/plugin-transform-typescript": "^7.5.5",
     "@plusnew/enzyme-adapter": "^0.6.54",
     "@types/enzyme": "^3.9.2",
     "@types/jasmine": "^3.4.0",
+    "awesome-typescript-loader": "^5.2.1",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
     "enzyme": "^3.10.0",
@@ -38,7 +40,7 @@
     "karma-coverage-istanbul-reporter": "^2.1.0",
     "karma-jasmine": "^2.0.1",
     "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^4.0.2",
+    "karma-webpack": "^5.0.0-alpha.3.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
