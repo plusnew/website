@@ -1,9 +1,8 @@
-var webpackConfig = require("../webpack/test.conf.js");
+var webpackConfig = require("../webpack/base.conf.js")({ mode: 'test' });
 var path = require('path');
 
 module.exports = function karmaConfig(config) {
-
-  var configuration = {
+  config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: path.join('..', '..', 'src'),
@@ -19,8 +18,6 @@ module.exports = function karmaConfig(config) {
       { pattern: '**/*', watched: true, included: false, served: true, nocache: false }
     ],
 
-    // webpack: webpackConfig,
-
     // list of files to exclude
     exclude: [],
 
@@ -35,7 +32,7 @@ module.exports = function karmaConfig(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage-istanbul'],
+    reporters: ['progress'],
 
     coverageIstanbulReporter: {
       reports: ['html', 'lcov', 'text-summary'],
@@ -71,7 +68,7 @@ module.exports = function karmaConfig(config) {
       'karma-webpack',
       'karma-jasmine',
       'karma-sourcemap-loader',
-      'karma-coverage-istanbul-reporter',
+      // 'karma-coverage-istanbul-reporter',
       'karma-chrome-launcher',
     ],
 
@@ -80,7 +77,5 @@ module.exports = function karmaConfig(config) {
     },
 
     webpack: webpackConfig,
-  };
-
-  config.set(configuration);
+  });
 };
