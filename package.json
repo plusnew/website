@@ -6,8 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --config config/webpack/base.conf.js --env.mode=development",
     "build": "webpack --config config/webpack/base.conf.js --env.mode=production",
-    "test": "karma start config/karma/base.conf.js",
-    "test:watch": "karma start config/karma/base.conf.js --auto-watch --no-single-run"
+    "test": "jest -c config/jest/base.conf.js --coverage",
+    "test:watch": "jest -c config/jest/base.conf.js --watch"
   },
   "keywords": [
     "plusnew"
@@ -24,7 +24,7 @@
     "@babel/plugin-transform-typescript": "^7.6.0",
     "@babel/preset-env": "^7.8.3",
     "@plusnew/enzyme-adapter": "^0.6.54",
-    "@types/enzyme": "^3.9.2",
+    "@types/enzyme": "^3.10.4",
     "@types/jasmine": "^3.4.0",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
@@ -54,7 +54,6 @@
     "tslint-config-airbnb": "^5.11.1",
     "typescript": "^3.6.3",
     "webpack": "^4.41.5",
-    "webpack-babel-multi-target-plugin": "^2.3.0",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.4.1"
   }
