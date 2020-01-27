@@ -36,7 +36,7 @@ branches:
     - master
 
 after_deploy:
-  - curl -u $DEPLOY_USER:$DEPLOY_PASSWORD https://www.plusnew.io/checkUpdate.php
+  - curl -u $DEPLOY_USER:$DEPLOY_PASSWORD https://plusnew.io/checkUpdate.php
 
 deploy:
   provider: releases
