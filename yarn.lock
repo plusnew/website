@@ -991,10 +991,10 @@
   resolved "https://registry.yarnpkg.com/@plusnew/enzyme-adapter/-/enzyme-adapter-0.6.54.tgz#3a76f5ee79e5bd6db7ce0b4a72cf1c264ccbc2b7"
   integrity sha512-J6SFRp7HvOLMgGqXJtV5DBL0IVf5Tpw7AlDQMNByVGizo212N4Ox7IqMSZf597a6mUmWIKZZfwjjCDopd+1NQQ==
 
-"@plusnew/router@0.6.63":
-  version "0.6.63"
-  resolved "https://registry.yarnpkg.com/@plusnew/router/-/router-0.6.63.tgz#473327c5a72dbd64d568855c299755586fe312f6"
-  integrity sha512-0nJNYwvDIsSYToyFmu5AK/GkH4hhAhNiH+TlgBdkh29ZRpp1Eiymhhjunov9XxrKmQ6rgqeSlAdHfMqIWAWBtg==
+"@plusnew/router@0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@plusnew/router/-/router-0.7.1.tgz#505cf634bd5b76e305b5562bbe72e7dcd84d0f64"
+  integrity sha512-4YE4wMXecdT1fMgu6CPlx1LFdXSFaULgOXvEAElYLqWb+pgwYMSxTFPvvJpaB5UBUlgIXzaBOlnNMkLMskSNAQ==
 
 "@sinonjs/commons@^1.7.0":
   version "1.7.0"

@@ -15,7 +15,7 @@
   "author": "",
   "dependencies": {
     "@plusnew/core": "^0.6.59",
-    "@plusnew/router": "0.6.63"
+    "@plusnew/router": "0.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
