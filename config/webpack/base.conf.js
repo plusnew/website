@@ -1,24 +1,43 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const PROJECT_ROOT = path.join(__dirname, '..', '..');
 
+const browserlist = {
+  modern: [
+    // The last two versions of each browser, excluding versions
+    // that don't support <script type="module">.
+    'last 2 Chrome versions', 'not Chrome < 60',
+    'last 2 Safari versions', 'not Safari < 10.1',
+    'last 2 iOS versions', 'not iOS < 10.3',
+    'last 2 Firefox versions', 'not Firefox < 54',
+    'last 2 Edge versions', 'not Edge < 15',
+  ],
+  legacy: [
+    '> 1%',
+    'last 2 versions',
+    'Firefox ESR',
+  ]
+};
+
 const getConfig = (opt) => ({
   context: path.join(PROJECT_ROOT, 'src'),
-  entry: ['./index.tsx'],
+  entry: {
+    modern: './index.tsx?esVersion=modern',
+    legacy: './nomodule.ts?esVersion=legacy'
+  },
   mode: opt.mode,
   devServer: opt.devServer,
   output: {
     path: path.join(PROJECT_ROOT, 'dist'),
-    filename: 'js/[name].[hash].js',
-    chunkFilename: 'js/[name].[hash].bundle.js',
-    publicPath: '/'
+    filename: `js/[name].${opt.esVersion}.[hash].js`,
+    chunkFilename: `js/[name].${opt.esVersion}.[hash].bundle.js`,
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -30,10 +49,7 @@ const getConfig = (opt) => ({
       {
         test: /\.scss$/,
         use: [
-          // MiniCssExtractPlugin.loader,
-          {
-            loader: 'style-loader'
-          },
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -65,7 +81,17 @@ const getConfig = (opt) => ({
         use: [{
           loader: 'babel-loader',
           options: {
-            presets: [],
+            presets: [
+              ['@babel/preset-env', {
+                loose: true,
+                modules: false,
+                // debug: true,
+                corejs: 3,
+                useBuiltIns: 'usage',
+                targets: {
+                  browsers: browserlist[opt.esVersion],
+                },
+              }],],
             plugins: [
               "@babel/plugin-proposal-class-properties",
               [
@@ -92,22 +118,22 @@ const getConfig = (opt) => ({
   },
   optimization: opt.optimization,
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: `css/[name].[contenthash].css`,
+      chunkFilename: `css/[id].[contenthash].css`,
+    }),
+
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [path.join(__dirname, '..', '..', 'dist')],
-    }),
-
-    new HtmlWebpackPlugin({
-      title: 'plusnew app',
-      inject: 'head',
-    }),
-
-    new ScriptExtHtmlWebpackPlugin({
-      defaultAttribute: 'defer'
     }),
 
     new ForkTsCheckerWebpackPlugin({
       tsconfig: path.join(PROJECT_ROOT, 'tsconfig.json'),
     }),
+
+    new CopyPlugin([
+      { from: `${PROJECT_ROOT}/public` },
+    ]),
 
     ...opt.plugins,
   ],
@@ -118,7 +144,7 @@ module.exports = (env) => {
   const rules = [];
 
   if (env.mode === 'test') {
-    plugins.push(  new webpack.SourceMapDevToolPlugin({
+    plugins.push(new webpack.SourceMapDevToolPlugin({
       filename: null, // if no value is provided the sourcemap is inlined
       test: /\.(ts|tsx)($|\?)/i // process .js and .ts files only
     }));
@@ -137,7 +163,8 @@ module.exports = (env) => {
 
   const opt = {
     mode: env.mode === 'test' ? 'development' : env.mode,
-    devServer: env.mode === 'development' ?  {
+    esVersion: 'modern',
+    devServer: env.mode === 'development' ? {
       port: 3000,
       clientLogLevel: "info",
       historyApiFallback: true,
@@ -147,16 +174,29 @@ module.exports = (env) => {
     optimization: env.mode === 'test' ? {
       splitChunks: undefined,
     } : {
-      splitChunks: {
-        chunks: 'all',
-        minSize: 0,
-        cacheGroups: {
-          default: {
-            minChunks: 1,
+        splitChunks: {
+          chunks: 'all',
+          minSize: 0,
+          cacheGroups: {
+            default: {
+              minChunks: 1,
+            }
           }
         }
-      }
-    },
+      },
+  }
+
+  if (opt.mode === 'production') {
+    return [
+      getConfig({
+        ...opt,
+        esVersion: 'legacy'
+      }),
+      getConfig({
+        ...opt,
+        esVersion: 'modern'
+      })
+    ];
   }
 
   return getConfig(opt);
