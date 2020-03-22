@@ -7,15 +7,13 @@ const webpack = require('webpack');
 const BabelMultiTargetPlugin = require('webpack-babel-multi-target-plugin').BabelMultiTargetPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const PROJECT_ROOT = path.join(__dirname, '..', '..');
-
 const getConfig = (opt) => ({
-	context: path.join(PROJECT_ROOT, 'src'),
+	context: path.join(__dirname, 'src'),
 	entry: './index.tsx',
 	mode: opt.mode,
 	devServer: opt.devServer,
 	output: {
-		path: path.join(PROJECT_ROOT, 'dist'),
+		path: path.join(__dirname, 'dist'),
 		filename: `static/js/[name].[hash].js`,
 		chunkFilename: `static/js/[name].[hash].bundle.js`,
 		publicPath: '/'
@@ -107,11 +105,11 @@ const getConfig = (opt) => ({
 		}),
 
 		new CleanWebpackPlugin({
-			cleanOnceBeforeBuildPatterns: [ path.join(__dirname, '..', '..', 'dist') ]
+			cleanOnceBeforeBuildPatterns: [ path.join(__dirname, 'dist') ]
 		}),
 
 		new ForkTsCheckerWebpackPlugin({
-			tsconfig: path.join(PROJECT_ROOT, 'tsconfig.json')
+			tsconfig: path.join(__dirname, 'tsconfig.json')
 		}),
 
 		...opt.plugins
