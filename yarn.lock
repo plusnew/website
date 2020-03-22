@@ -1182,10 +1182,10 @@
   resolved "https://registry.yarnpkg.com/@plusnew/enzyme-adapter/-/enzyme-adapter-0.6.54.tgz#3a76f5ee79e5bd6db7ce0b4a72cf1c264ccbc2b7"
   integrity sha512-J6SFRp7HvOLMgGqXJtV5DBL0IVf5Tpw7AlDQMNByVGizo212N4Ox7IqMSZf597a6mUmWIKZZfwjjCDopd+1NQQ==
 
-"@plusnew/router@0.6.63":
-  version "0.6.63"
-  resolved "https://registry.yarnpkg.com/@plusnew/router/-/router-0.6.63.tgz#473327c5a72dbd64d568855c299755586fe312f6"
-  integrity sha512-0nJNYwvDIsSYToyFmu5AK/GkH4hhAhNiH+TlgBdkh29ZRpp1Eiymhhjunov9XxrKmQ6rgqeSlAdHfMqIWAWBtg==
+"@plusnew/router@0.7.3":
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@plusnew/router/-/router-0.7.3.tgz#725463feeb798cd930f388a393664ffa8dd0782b"
+  integrity sha512-CZ7avPlT7xtcT3eRc5eEZ/DbDXNuVZF3tkGh/gnCodA1MWluWfSuZKMYLPaikYLRlpmBBb6Zj0AgtJ/Tbknvug==
 
 "@sinonjs/commons@^1.7.0":
   version "1.7.0"
