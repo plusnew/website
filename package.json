@@ -12,7 +12,7 @@
 	"keywords": [ "plusnew" ],
 	"author": "",
 	"dependencies": {
-		"@plusnew/core": "^0.6.59",
+		"@plusnew/core": "^1.0.0",
 		"@plusnew/router": "0.6.63"
 	},
 	"devDependencies": {
