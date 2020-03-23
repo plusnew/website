@@ -21,7 +21,7 @@
 		"@babel/plugin-transform-react-jsx": "^7.9.1",
 		"@babel/plugin-transform-typescript": "^7.9.0",
 		"@babel/preset-env": "^7.9.0",
-		"@plusnew/enzyme-adapter": "^0.6.54",
+		"@plusnew/enzyme-adapter": "^1.0.0",
 		"@types/enzyme": "^3.10.4",
 		"@types/jest": "25.1.4",
 		"awesome-typescript-loader": "^5.2.1",
