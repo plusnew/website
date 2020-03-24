@@ -8,6 +8,7 @@ module.exports = {
 	transform: {
 		'^.+\\.tsx?$': 'ts-jest'
 	},
+	transformIgnorePatterns: [ 'node_modules/(?!@plusnew/)' ],
 	moduleFileExtensions: [ 'tsx', 'ts', 'js' ],
 	moduleNameMapper: {
 		'\\.(png|jpg|gif)$': path.join(__dirname, 'jest', 'mocks', 'file.js'),

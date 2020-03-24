@@ -12,7 +12,7 @@ import styles from './content.scss';
 export default component(
   __dirname,
   () =>
-    <article className={styles.content}>
+    <article class={styles.content}>
       <LandingPageRoute.Component />
       <DocumentationRoute.Component />
       <AboutRoute.Component />

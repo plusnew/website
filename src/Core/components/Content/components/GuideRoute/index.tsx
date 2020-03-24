@@ -1,27 +1,25 @@
-import { createRoute } from '@plusnew/router';
-import plusnew, { Async, component, Props } from '@plusnew/core';
+import plusnew, { Async, component } from '@plusnew/core';
+import DocumentTitle from 'shared/Components/DocumentTitle';
 import Error from 'shared/Components/Error';
 import Loader from 'shared/Components/Loader';
-import DocumentTitle from 'shared/Components/DocumentTitle';
+import landingPageRoute from '../LandingPageRoute';
 
-const Container = component(
-  __dirname,
-  (_Props: Props<{props: {}, parameter: {}}>) =>
-    <>
-      <DocumentTitle value="plusnew | guide" />
-      <Async
-        pendingIndicator={<div><Loader /></div>}
-      >{() =>
-        // tslint:disable-next-line: space-in-parens
-        import(/* webpackChunkName: "site/guide" */ './components/GuideContent')
-          .then(module => <module.default />)
-          .catch(() => <Error message="Could not load" />)
-        }</Async>
-    </>,
-);
-
-export default createRoute(
+export default landingPageRoute.createChildRoute(
   'guide',
   {},
-  Container,
+  component(
+    __dirname,
+    () =>
+      <>
+        <DocumentTitle value="plusnew | guide" />
+        <Async
+          pendingIndicator={<div><Loader /></div>}
+        >{() =>
+          // tslint:disable-next-line: space-in-parens
+          import(/* webpackChunkName: "site/guide" */ './components/GuideContent')
+            .then(module => <module.default />)
+            .catch(() => <Error message="Could not load" />)
+          }</Async>
+      </>,
+  ),
 );

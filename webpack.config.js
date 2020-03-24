@@ -82,6 +82,7 @@ const getConfig = (opt) => ({
 					[
 						'@babel/plugin-transform-typescript',
 						{
+							onlyRemoveTypeImports: true,
 							isTSX: true,
 							jsxPragma: 'plusnew'
 						}

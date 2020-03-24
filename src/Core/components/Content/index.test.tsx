@@ -44,7 +44,7 @@ describe('test <Content />', () => {
   it('documentation page should be present', async () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
-      <StaticProvider url="documentation" onchange={() => null}>
+      <StaticProvider url="/documentation" onchange={() => null}>
         <Index />
       </StaticProvider>,
       {
@@ -72,7 +72,7 @@ describe('test <Content />', () => {
   it('guide page should be present', async () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
-      <StaticProvider url="guide" onchange={() => null}>
+      <StaticProvider url="/guide" onchange={() => null}>
         <Index />
       </StaticProvider>,
       {
@@ -100,7 +100,7 @@ describe('test <Content />', () => {
   it('About page should be present', async () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
-      <StaticProvider url="about" onchange={() => null}>
+      <StaticProvider url="/about" onchange={() => null}>
         <Index />
       </StaticProvider>,
       {
@@ -152,7 +152,7 @@ describe('test <Content />', () => {
   it('invalid page should be present, when given weird parameters', async () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
-      <StaticProvider url="/?invalid=parameter" onchange={() => null}>
+      <StaticProvider url="/;invalid=parameter" onchange={() => null}>
         <Index />
       </StaticProvider>,
       {

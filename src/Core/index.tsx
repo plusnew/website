@@ -9,7 +9,7 @@ export default component(
   __dirname,
   () =>
     <BrowserProvider>
-      <div className={styles.app}>
+      <div class={styles.app}>
         <Header />
         <Content />
         <Footer />
