@@ -6,6 +6,6 @@ export default component(
   () =>
     <>
       <div>Welcome to plusnew docs</div>
-      <MonacoEditor value="const foo: string = 'hello" />
+      <MonacoEditor value="const foo: string = 'hello';" />
     </>
 );

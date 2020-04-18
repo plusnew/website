@@ -6,10 +6,13 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const webpack = require('webpack');
 const BabelMultiTargetPlugin = require('webpack-babel-multi-target-plugin').BabelMultiTargetPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const getConfig = (opt) => ({
 	context: path.join(__dirname, 'src'),
-	entry: './index.tsx',
+	entry: {
+		main: './index.tsx',
+	},
 	mode: opt.mode,
 	devServer: opt.devServer,
 	output: {
@@ -25,6 +28,10 @@ const getConfig = (opt) => ({
 	devtool: 'source-map',
 	module: {
 		rules: [
+			{
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
+      },
 			{
 				test: /\.scss$/,
 				use: [
@@ -45,7 +52,7 @@ const getConfig = (opt) => ({
 				]
 			},
 			{
-				test: /\.(png|jpg|gif)$/,
+				test: /\.(png|jpg|gif|ttf)$/,
 				use: [
 					{
 						loader: 'file-loader',
@@ -66,9 +73,7 @@ const getConfig = (opt) => ({
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'plusnew',
-			options: {
-				minify: false,
-			}
+			minify: false,
 		}),
 		new BabelMultiTargetPlugin({
 			babel: {
@@ -115,6 +120,8 @@ const getConfig = (opt) => ({
 		new ForkTsCheckerWebpackPlugin({
 			tsconfig: path.join(__dirname, 'tsconfig.json')
 		}),
+
+		new MonacoWebpackPlugin(),
 
 		...opt.plugins
 	]
