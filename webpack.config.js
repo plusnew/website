@@ -65,7 +65,10 @@ const getConfig = (opt) => ({
 	optimization: opt.optimization,
 	plugins: [
 		new HtmlWebpackPlugin({
-			title: 'plusnew'
+			title: 'plusnew',
+			options: {
+				minify: false,
+			}
 		}),
 		new BabelMultiTargetPlugin({
 			babel: {
