@@ -6,6 +6,9 @@ const result: typeof en = {
     guide: "Anleitungen",
     about: "Über",
   },
+  content: {
+    description: "Webseite vom plusnew-framework",
+  },
   footer: "Footer",
   error: {
     load: "Konnte nicht geladen werden",

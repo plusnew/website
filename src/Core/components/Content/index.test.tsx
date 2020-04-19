@@ -20,7 +20,9 @@ describe("test <Content />", () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
       <StaticProvider url="/" onchange={() => null}>
-        <Index />
+        <i18n.Provider language="en">
+          <Index />
+        </i18n.Provider>
       </StaticProvider>,
       {
         plusnewRenderOptions: {
@@ -122,7 +124,9 @@ describe("test <Content />", () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
       <StaticProvider url="/" onchange={() => null}>
-        <Index />
+        <i18n.Provider language="en">
+          <Index />
+        </i18n.Provider>
       </StaticProvider>,
       {
         plusnewRenderOptions: {
