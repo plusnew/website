@@ -16,7 +16,7 @@
 	"dependencies": {
 		"@plusnew/core": "^1.1.0",
 		"@plusnew/driver-dom": "^1.0.2",
-		"@plusnew/i18n": "^0.1.4",
+		"@plusnew/i18n": "^0.2.0",
 		"@plusnew/router": "1.1.1",
 		"monaco-editor": "^0.20.0"
 	},
