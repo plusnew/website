@@ -1,14 +1,14 @@
-import plusnew, { component, Props } from '@plusnew/core';
+import plusnew, { component, Props } from "@plusnew/core";
 
 type props = {
-  value: string,
+  value: string;
 };
 
-export default component(
-  __dirname,
-  (Props: Props<props>) =>
-    <Props>{(props) => {
+export default component(__dirname, (Props: Props<props>) => (
+  <Props>
+    {(props) => {
       document.title = props.value;
       return null;
-    }}</Props>,
-);
+    }}
+  </Props>
+));

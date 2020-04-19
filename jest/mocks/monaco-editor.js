@@ -1,5 +1,5 @@
 module.exports = {
-    editor: {
-      create: () => null
-    }
-}
+  editor: {
+    create: () => null,
+  },
+};

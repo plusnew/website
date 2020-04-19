@@ -1,11 +1,7 @@
-import plusnew, { component, Props } from '@plusnew/core';
+import plusnew, { component, Props } from "@plusnew/core";
 
 type props = {};
 
-export default component(
-  __dirname,
-  (_Props: Props<props>) =>
-    <div>
-      Sorry about that, but we could not find what you were looking for
-    </div>,
-);
+export default component(__dirname, (_Props: Props<props>) => (
+  <div>Sorry about that, but we could not find what you were looking for</div>
+));

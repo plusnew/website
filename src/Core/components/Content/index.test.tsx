@@ -1,21 +1,21 @@
-import { StaticProvider } from '@plusnew/router';
-import { configure } from 'enzyme';
-import enzymeAdapterPlusnew, { mount } from '@plusnew/enzyme-adapter';
-import plusnew from '@plusnew/core';
-import Loader from 'shared/Components/Loader';
-import LandingPageContent from './components/LandingPageRoute/components/LandingPageContent';
-import DocumentationContent from './components/DocumentationRoute/components/DocumentationContent';
-import GuideContent from './components/GuideRoute/components/GuideContent';
-import AboutContent from './components/AboutRoute/components/AboutContent';
-import Index from './index';
-import { getAwaitAllHandle } from 'testHelper';
-import NotFound from './components/NotFound';
-import Invalid from './components/Invalid';
+import { StaticProvider } from "@plusnew/router";
+import { configure } from "enzyme";
+import enzymeAdapterPlusnew, { mount } from "@plusnew/enzyme-adapter";
+import plusnew from "@plusnew/core";
+import Loader from "shared/Components/Loader";
+import LandingPageContent from "./components/LandingPageRoute/components/LandingPageContent";
+import DocumentationContent from "./components/DocumentationRoute/components/DocumentationContent";
+import GuideContent from "./components/GuideRoute/components/GuideContent";
+import AboutContent from "./components/AboutRoute/components/AboutContent";
+import Index from "./index";
+import { getAwaitAllHandle } from "testHelper";
+import NotFound from "./components/NotFound";
+import Invalid from "./components/Invalid";
 
 configure({ adapter: new enzymeAdapterPlusnew() });
 
-describe('test <Content />', () => {
-  it('landing page should be present', async () => {
+describe("test <Content />", () => {
+  it("landing page should be present", async () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
       <StaticProvider url="/" onchange={() => null}>
@@ -25,23 +25,19 @@ describe('test <Content />', () => {
         plusnewRenderOptions: {
           addAsyncListener: awaitHandle.callback,
         },
-      },
+      }
     );
 
-    expect(wrapper.containsMatchingElement(
-      <Loader />,
-    )).toBe(true);
+    expect(wrapper.containsMatchingElement(<Loader />)).toBe(true);
 
     await awaitHandle.done();
 
-    expect(wrapper.containsMatchingElement(
-      <LandingPageContent />,
-    )).toBe(true);
+    expect(wrapper.containsMatchingElement(<LandingPageContent />)).toBe(true);
 
-    expect(document.title).toBe('plusnew | the framework for maintanability');
+    expect(document.title).toBe("plusnew | the framework for maintanability");
   });
 
-  it('documentation page should be present', async () => {
+  it("documentation page should be present", async () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
       <StaticProvider url="/documentation" onchange={() => null}>
@@ -51,25 +47,23 @@ describe('test <Content />', () => {
         plusnewRenderOptions: {
           addAsyncListener: awaitHandle.callback,
         },
-      },
+      }
     );
 
-    expect(document.title).toBe('plusnew | documentation');
+    expect(document.title).toBe("plusnew | documentation");
 
-    expect(wrapper.containsMatchingElement(
-      <Loader />,
-    )).toBe(true);
+    expect(wrapper.containsMatchingElement(<Loader />)).toBe(true);
 
     await awaitHandle.done();
 
-    expect(wrapper.containsMatchingElement(
-      <DocumentationContent />,
-    )).toBe(true);
+    expect(wrapper.containsMatchingElement(<DocumentationContent />)).toBe(
+      true
+    );
 
-    expect(document.title).toBe('plusnew | documentation');
+    expect(document.title).toBe("plusnew | documentation");
   });
 
-  it('guide page should be present', async () => {
+  it("guide page should be present", async () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
       <StaticProvider url="/guide" onchange={() => null}>
@@ -79,25 +73,21 @@ describe('test <Content />', () => {
         plusnewRenderOptions: {
           addAsyncListener: awaitHandle.callback,
         },
-      },
+      }
     );
 
-    expect(document.title).toBe('plusnew | guide');
+    expect(document.title).toBe("plusnew | guide");
 
-    expect(wrapper.containsMatchingElement(
-      <Loader />,
-    )).toBe(true);
+    expect(wrapper.containsMatchingElement(<Loader />)).toBe(true);
 
     await awaitHandle.done();
 
-    expect(wrapper.containsMatchingElement(
-      <GuideContent />,
-    )).toBe(true);
+    expect(wrapper.containsMatchingElement(<GuideContent />)).toBe(true);
 
-    expect(document.title).toBe('plusnew | guide');
+    expect(document.title).toBe("plusnew | guide");
   });
 
-  it('About page should be present', async () => {
+  it("About page should be present", async () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
       <StaticProvider url="/about" onchange={() => null}>
@@ -107,25 +97,21 @@ describe('test <Content />', () => {
         plusnewRenderOptions: {
           addAsyncListener: awaitHandle.callback,
         },
-      },
+      }
     );
 
-    expect(document.title).toBe('plusnew | about');
+    expect(document.title).toBe("plusnew | about");
 
-    expect(wrapper.containsMatchingElement(
-      <Loader />,
-    )).toBe(true);
+    expect(wrapper.containsMatchingElement(<Loader />)).toBe(true);
 
     await awaitHandle.done();
 
-    expect(wrapper.containsMatchingElement(
-      <AboutContent />,
-    )).toBe(true);
+    expect(wrapper.containsMatchingElement(<AboutContent />)).toBe(true);
 
-    expect(document.title).toBe('plusnew | about');
+    expect(document.title).toBe("plusnew | about");
   });
 
-  it('landing page should be present at root', async () => {
+  it("landing page should be present at root", async () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
       <StaticProvider url="/" onchange={() => null}>
@@ -135,21 +121,17 @@ describe('test <Content />', () => {
         plusnewRenderOptions: {
           addAsyncListener: awaitHandle.callback,
         },
-      },
+      }
     );
 
-    expect(wrapper.containsMatchingElement(
-      <Loader />,
-    )).toBe(true);
+    expect(wrapper.containsMatchingElement(<Loader />)).toBe(true);
 
     await awaitHandle.done();
 
-    expect(wrapper.containsMatchingElement(
-      <LandingPageContent />,
-    )).toBe(true);
+    expect(wrapper.containsMatchingElement(<LandingPageContent />)).toBe(true);
   });
 
-  it('invalid page should be present, when given weird parameters', async () => {
+  it("invalid page should be present, when given weird parameters", async () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
       <StaticProvider url="/;invalid=parameter" onchange={() => null}>
@@ -159,25 +141,21 @@ describe('test <Content />', () => {
         plusnewRenderOptions: {
           addAsyncListener: awaitHandle.callback,
         },
-      },
+      }
     );
 
-    expect(document.title).toBe('plusnew | invalid url');
+    expect(document.title).toBe("plusnew | invalid url");
 
-    expect(wrapper.containsMatchingElement(
-      <Loader />,
-    )).toBe(true);
+    expect(wrapper.containsMatchingElement(<Loader />)).toBe(true);
 
     await awaitHandle.done();
 
-    expect(wrapper.containsMatchingElement(
-      <Invalid />,
-    )).toBe(true);
+    expect(wrapper.containsMatchingElement(<Invalid />)).toBe(true);
 
-    expect(document.title).toBe('plusnew | invalid url');
+    expect(document.title).toBe("plusnew | invalid url");
   });
 
-  it('not found page should be present', async () => {
+  it("not found page should be present", async () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
       <StaticProvider url="/mep" onchange={() => null}>
@@ -187,21 +165,17 @@ describe('test <Content />', () => {
         plusnewRenderOptions: {
           addAsyncListener: awaitHandle.callback,
         },
-      },
+      }
     );
 
-    expect(document.title).toBe('plusnew | not found');
+    expect(document.title).toBe("plusnew | not found");
 
-    expect(wrapper.containsMatchingElement(
-      <Loader />,
-    )).toBe(true);
+    expect(wrapper.containsMatchingElement(<Loader />)).toBe(true);
 
     await awaitHandle.done();
 
-    expect(wrapper.containsMatchingElement(
-      <NotFound />,
-    )).toBe(true);
+    expect(wrapper.containsMatchingElement(<NotFound />)).toBe(true);
 
-    expect(document.title).toBe('plusnew | not found');
+    expect(document.title).toBe("plusnew | not found");
   });
 });
