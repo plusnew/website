@@ -1,7 +1,8 @@
-import { Invalid, NotFound } from "@plusnew/router";
 import plusnew, { Async, component } from "@plusnew/core";
+import { Invalid, NotFound } from "@plusnew/router";
 import DocumentTitle from "shared/Components/DocumentTitle";
 import Error from "shared/Components/Error/index";
+import i18n from "shared/Components/i18n";
 import Loader from "shared/Components/Loader";
 import AboutRoute from "./components/AboutRoute";
 import DocumentationRoute from "./components/DocumentationRoute";
@@ -31,7 +32,11 @@ export default component(__dirname, () => (
               /* webpackChunkName: "site/notFound" */ "./components/NotFound"
             )
               .then((module) => <module.default />)
-              .catch(() => <Error message="Could not load" />)
+              .catch(() => (
+                <i18n.Consumer>
+                  {({ base }) => <Error message={base()?.error.load || ""} />}
+                </i18n.Consumer>
+              ))
           }
         </Async>
       </>
@@ -53,7 +58,11 @@ export default component(__dirname, () => (
               /* webpackChunkName: "site/invalid" */ "./components/Invalid"
             )
               .then((module) => <module.default />)
-              .catch(() => <Error message="Could not load" />)
+              .catch(() => (
+                <i18n.Consumer>
+                  {({ base }) => <Error message={base()?.error.load || ""} />}
+                </i18n.Consumer>
+              ))
           }
         </Async>
       </>

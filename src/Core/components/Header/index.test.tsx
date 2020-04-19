@@ -7,14 +7,22 @@ import { configure } from "enzyme";
 import enzymeAdapterPlusnew, { mount } from "@plusnew/enzyme-adapter";
 import plusnew from "@plusnew/core";
 import Index from "./index";
+import i18n from "shared/Components/i18n";
 
 configure({ adapter: new enzymeAdapterPlusnew() });
 
+async function tick(amount: number) {
+  for (let i = 0; i < amount; i += 1) {
+    await new Promise((resolve) => resolve());
+  }
+}
 describe("test <Header />", () => {
   it("should contain landing page", () => {
     const wrapper = mount(
       <StaticProvider url="" onchange={() => null}>
-        <Index />
+        <i18n.Provider language="en">
+          <Index />
+        </i18n.Provider>
       </StaticProvider>
     );
 
@@ -27,12 +35,16 @@ describe("test <Header />", () => {
     ).toBe(true);
   });
 
-  it("should contain documentation page", () => {
+  it("should contain documentation page", async () => {
     const wrapper = mount(
       <StaticProvider url="" onchange={() => null}>
-        <Index />
+        <i18n.Provider language="en">
+          <Index />
+        </i18n.Provider>
       </StaticProvider>
     );
+
+    await tick(2);
 
     expect(
       wrapper.containsMatchingElement(
@@ -42,44 +54,52 @@ describe("test <Header />", () => {
             documentation: {},
           }}
         >
-          documentation
+          Documentation
         </DocumentationRoute.Link>
       )
     ).toBe(true);
   });
 
-  it("should contain Guide page", () => {
+  it("should contain Guide page", async () => {
     const wrapper = mount(
       <StaticProvider url="" onchange={() => null}>
-        <Index />
+        <i18n.Provider language="en">
+          <Index />
+        </i18n.Provider>
       </StaticProvider>
     );
 
-    expect(
-      wrapper.containsMatchingElement(
-        <GuideRoute.Link
-          parameter={{
-            "/": {},
-            guide: {},
-          }}
-        >
-          guide
-        </GuideRoute.Link>
-      )
-    ).toBe(true);
+    await tick(2);
+
+    const result = wrapper.containsMatchingElement(
+      <GuideRoute.Link
+        parameter={{
+          "/": {},
+          guide: {},
+        }}
+      >
+        Guide
+      </GuideRoute.Link>
+    );
+
+    expect(result).toBe(true);
   });
 
-  it("should contain about page", () => {
+  it("should contain about page", async () => {
     const wrapper = mount(
       <StaticProvider url="" onchange={() => null}>
-        <Index />
+        <i18n.Provider language="en">
+          <Index />
+        </i18n.Provider>
       </StaticProvider>
     );
+
+    await tick(2);
 
     expect(
       wrapper.containsMatchingElement(
         <AboutRoute.Link parameter={{ "/": {}, about: {} }}>
-          about
+          About
         </AboutRoute.Link>
       )
     ).toBe(true);

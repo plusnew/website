@@ -2,6 +2,7 @@ import plusnew, { Async, component } from "@plusnew/core";
 import { createRoute } from "@plusnew/router";
 import DocumentTitle from "shared/Components/DocumentTitle";
 import Error from "shared/Components/Error";
+import i18n from "shared/Components/i18n";
 import Loader from "shared/Components/Loader";
 
 export default createRoute(
@@ -23,7 +24,11 @@ export default createRoute(
             /* webpackChunkName: "site/leadPage" */ "./components/LandingPageContent"
           )
             .then((module) => <module.default />)
-            .catch(() => <Error message="Could not load" />)
+            .catch(() => (
+              <i18n.Consumer>
+                {({ base }) => <Error message={base()?.error.load || ""} />}
+              </i18n.Consumer>
+            ))
         }
       </Async>
     </>

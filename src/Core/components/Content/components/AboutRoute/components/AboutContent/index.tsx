@@ -1,5 +1,8 @@
 import plusnew, { component } from "@plusnew/core";
+import i18n from "shared/Components/i18n";
 
 export default component(__dirname, () => (
-  <div>plusnew is made by Carlo Jeske</div>
+  <i18n.Consumer>
+    {({ about }) => <div>{about()?.description}</div>}
+  </i18n.Consumer>
 ));

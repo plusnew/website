@@ -1,16 +1,17 @@
+import plusnew from "@plusnew/core";
+import enzymeAdapterPlusnew, { mount } from "@plusnew/enzyme-adapter";
 import { StaticProvider } from "@plusnew/router";
 import { configure } from "enzyme";
-import enzymeAdapterPlusnew, { mount } from "@plusnew/enzyme-adapter";
-import plusnew from "@plusnew/core";
+import i18n from "shared/Components/i18n";
 import Loader from "shared/Components/Loader";
-import LandingPageContent from "./components/LandingPageRoute/components/LandingPageContent";
+import { getAwaitAllHandle } from "testHelper";
+import AboutContent from "./components/AboutRoute/components/AboutContent";
 import DocumentationContent from "./components/DocumentationRoute/components/DocumentationContent";
 import GuideContent from "./components/GuideRoute/components/GuideContent";
-import AboutContent from "./components/AboutRoute/components/AboutContent";
-import Index from "./index";
-import { getAwaitAllHandle } from "testHelper";
-import NotFound from "./components/NotFound";
 import Invalid from "./components/Invalid";
+import LandingPageContent from "./components/LandingPageRoute/components/LandingPageContent";
+import NotFound from "./components/NotFound";
+import Index from "./index";
 
 configure({ adapter: new enzymeAdapterPlusnew() });
 
@@ -41,7 +42,9 @@ describe("test <Content />", () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
       <StaticProvider url="/documentation" onchange={() => null}>
-        <Index />
+        <i18n.Provider language="en">
+          <Index />
+        </i18n.Provider>
       </StaticProvider>,
       {
         plusnewRenderOptions: {
@@ -67,7 +70,9 @@ describe("test <Content />", () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
       <StaticProvider url="/guide" onchange={() => null}>
-        <Index />
+        <i18n.Provider language="en">
+          <Index />
+        </i18n.Provider>
       </StaticProvider>,
       {
         plusnewRenderOptions: {
@@ -91,7 +96,9 @@ describe("test <Content />", () => {
     const awaitHandle = getAwaitAllHandle();
     const wrapper = mount(
       <StaticProvider url="/about" onchange={() => null}>
-        <Index />
+        <i18n.Provider language="en">
+          <Index />
+        </i18n.Provider>
       </StaticProvider>,
       {
         plusnewRenderOptions: {

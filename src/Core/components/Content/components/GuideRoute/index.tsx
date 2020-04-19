@@ -1,6 +1,7 @@
 import plusnew, { Async, component } from "@plusnew/core";
 import DocumentTitle from "shared/Components/DocumentTitle";
 import Error from "shared/Components/Error";
+import i18n from "shared/Components/i18n";
 import Loader from "shared/Components/Loader";
 import landingPageRoute from "../LandingPageRoute";
 
@@ -23,7 +24,11 @@ export default landingPageRoute.createChildRoute(
             /* webpackChunkName: "site/guide" */ "./components/GuideContent"
           )
             .then((module) => <module.default />)
-            .catch(() => <Error message="Could not load" />)
+            .catch(() => (
+              <i18n.Consumer>
+                {({ base }) => <Error message={base()?.error.load || ""} />}
+              </i18n.Consumer>
+            ))
         }
       </Async>
     </>

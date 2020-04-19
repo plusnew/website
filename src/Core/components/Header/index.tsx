@@ -5,48 +5,53 @@ import LandingPageRoute from "Core/components/Content/components/LandingPageRout
 import AboutRoute from "Core/components/Content/components/AboutRoute";
 import styles from "./header.scss";
 import github from "./github.png";
+import i18n from "shared/Components/i18n";
 
 export default component(__dirname, () => (
-  <header class={styles.header}>
-    <h1>
-      <LandingPageRoute.Link
-        parameter={{
-          "/": {},
-        }}
-      >
-        + plusnew
-      </LandingPageRoute.Link>
-    </h1>
-    <nav>
-      <DocumentationRoute.Link
-        parameter={{
-          "/": {},
-          documentation: {},
-        }}
-      >
-        documentation
-      </DocumentationRoute.Link>
-      <GuideRoute.Link
-        parameter={{
-          "/": {},
-          guide: {},
-        }}
-      >
-        guide
-      </GuideRoute.Link>
-      <AboutRoute.Link
-        parameter={{
-          "/": {},
-          about: {},
-        }}
-      >
-        about
-      </AboutRoute.Link>
-    </nav>
-    <div class={styles.external}>
-      <a href="https://github.com/plusnew/plusnew" target="_blank">
-        <img src={github} />
-      </a>
-    </div>
-  </header>
+  <i18n.Consumer>
+    {({ base }) => (
+      <header class={styles.header}>
+        <h1>
+          <LandingPageRoute.Link
+            parameter={{
+              "/": {},
+            }}
+          >
+            + plusnew
+          </LandingPageRoute.Link>
+        </h1>
+        <nav>
+          <DocumentationRoute.Link
+            parameter={{
+              "/": {},
+              documentation: {},
+            }}
+          >
+            {base()?.navigation.documentation}
+          </DocumentationRoute.Link>
+          <GuideRoute.Link
+            parameter={{
+              "/": {},
+              guide: {},
+            }}
+          >
+            {base()?.navigation.guide || ""}
+          </GuideRoute.Link>
+          <AboutRoute.Link
+            parameter={{
+              "/": {},
+              about: {},
+            }}
+          >
+            {base()?.navigation.about}
+          </AboutRoute.Link>
+        </nav>
+        <div class={styles.external}>
+          <a href="https://github.com/plusnew/plusnew" target="_blank">
+            <img src={github} />
+          </a>
+        </div>
+      </header>
+    )}
+  </i18n.Consumer>
 ));
