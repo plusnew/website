@@ -1,4 +1,5 @@
 import plusnew, { component } from "@plusnew/core";
+import style from "./logo.scss";
 
 const WIDTH = 200;
 const HEIGHT = 200;
@@ -19,16 +20,46 @@ function getBar({
   const EDGE = HEIGHT * (2 / 3);
 
   return (
-    <polyline
-      points={[
-        `${leftX}, 0`,
-        `${leftX}, ${EDGE}`,
-        `${leftBottomX}, ${HEIGHT}`,
-        `${rightBottomX}, ${HEIGHT}`,
-        `${rightX}, ${EDGE}`,
-        `${rightX}, 0`,
+    <path
+      class={style.bar}
+      d={[
+        `M${leftX}, 0`,
+        `L${leftX}, 0`,
+        `L${leftX}, 0`,
+        `L${rightX}, 0`,
+        `L${rightX}, 0`,
+        `L${rightX}, 0`,
       ].join(" ")}
-    ></polyline>
+    >
+      <animate
+        dur="1s"
+        repeatCount="indefinite"
+        attributeName="d"
+        values={[
+          `M${leftX}, 0`,
+          `L${leftX}, ${EDGE}`,
+          `L${leftX}, ${EDGE}`,
+          `L${rightX}, ${EDGE}`,
+          `L${rightX}, ${EDGE}`,
+          `L${rightX}, 0`,
+        ].join(" ")}
+      />
+
+      <animate
+        begin="1s"
+        dur="1s"
+        attributeName="d"
+        repeatCount="indefinite"
+        values={[
+          `M${leftX}, 0`,
+          `L${leftX}, ${EDGE}`,
+          `L${leftBottomX}, ${HEIGHT}`,
+          `L${rightBottomX}, ${HEIGHT}`,
+          `L${rightX}, ${EDGE}`,
+          `L${rightX}, 0`,
+        ].join(" ")}
+      />
+    </path>
   );
 }
 
