@@ -5,6 +5,7 @@
   grid-auto-flow: column;
   grid-gap: 1rem;
   grid-template-columns: max-content max-content 1fr;
+  background-color: #F7ECD0;
 
   :global .router__link {
     color: #333333; // @TODO add color variables

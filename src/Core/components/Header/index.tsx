@@ -6,11 +6,13 @@ import AboutRoute from "Core/components/Content/components/AboutRoute";
 import styles from "./header.scss";
 import github from "./github.png";
 import i18n from "shared/Components/i18n";
+import Logo from "./components/Logo";
 
 export default component(__dirname, () => (
   <i18n.Consumer>
     {({ base }) => (
       <header class={styles.header}>
+        <Logo />
         <h1>
           <LandingPageRoute.Link
             parameter={{
