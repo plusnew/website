@@ -1,27 +1,17 @@
 import plusnew, { component } from "@plusnew/core";
+import AboutRoute from "Core/components/Content/components/AboutRoute";
 import DocumentationRoute from "Core/components/Content/components/DocumentationRoute";
 import GuideRoute from "Core/components/Content/components/GuideRoute";
-import LandingPageRoute from "Core/components/Content/components/LandingPageRoute";
-import AboutRoute from "Core/components/Content/components/AboutRoute";
-import styles from "./header.scss";
-import github from "./github.png";
 import i18n from "shared/Components/i18n";
 import Logo from "./components/Logo";
+import github from "./github.png";
+import styles from "./header.scss";
 
 export default component(__dirname, () => (
   <i18n.Consumer>
     {({ base }) => (
       <header class={styles.header}>
         <Logo />
-        <h1>
-          <LandingPageRoute.Link
-            parameter={{
-              "/": {},
-            }}
-          >
-            + plusnew
-          </LandingPageRoute.Link>
-        </h1>
         <nav>
           <DocumentationRoute.Link
             parameter={{

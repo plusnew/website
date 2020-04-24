@@ -17,7 +17,7 @@ async function tick(amount: number) {
   }
 }
 describe("test <Header />", () => {
-  it("should contain landing page", () => {
+  xit("should contain landing page", () => {
     const wrapper = mount(
       <StaticProvider url="" onchange={() => null}>
         <i18n.Provider language="en">
