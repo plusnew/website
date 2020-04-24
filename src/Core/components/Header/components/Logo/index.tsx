@@ -15,49 +15,50 @@ function getBar({
   leftBottomX: number;
   rightBottomX: number;
 }) {
-  const leftX = topX - TOP_BAR_WIDTH / 2;
-  const rightX = topX + TOP_BAR_WIDTH / 2;
-  const EDGE = HEIGHT * (2 / 3);
+  const leftX = Math.round(topX - TOP_BAR_WIDTH / 2);
+  const rightX = Math.round(topX + TOP_BAR_WIDTH / 2);
+  const EDGE = Math.round(HEIGHT * (2 / 3));
+
+  const from = [
+    `M${leftX},0`,
+    `L${leftX},0`,
+    `L${leftX},0`,
+    `L${rightX},0`,
+    `L${rightX},0`,
+    `L${rightX},0`,
+    "Z",
+  ];
+
+  const middle = [
+    `M${leftX},0`,
+    `L${leftX},${EDGE}`,
+    `L${leftX},${EDGE}`,
+    `L${rightX},${EDGE}`,
+    `L${rightX},${EDGE}`,
+    `L${rightX},0`,
+    "Z",
+  ];
+
+  const to = [
+    `M${leftX},0`,
+    `L${leftX},${EDGE}`,
+    `L${Math.round(leftBottomX)},${HEIGHT}`,
+    `L${Math.round(rightBottomX)},${HEIGHT}`,
+    `L${rightX},${EDGE}`,
+    `L${rightX},0`,
+    "Z",
+  ];
 
   return (
-    <path
-      class={style.bar}
-      d={[
-        `M${leftX}, 0`,
-        `L${leftX}, 0`,
-        `L${leftX}, 0`,
-        `L${rightX}, 0`,
-        `L${rightX}, 0`,
-        `L${rightX}, 0`,
-      ].join(" ")}
-    >
+    <path class={style.bar} d={to.join("")}>
       <animate
-        dur="1s"
-        repeatCount="indefinite"
+        dur="500ms"
         attributeName="d"
-        values={[
-          `M${leftX}, 0`,
-          `L${leftX}, ${EDGE}`,
-          `L${leftX}, ${EDGE}`,
-          `L${rightX}, ${EDGE}`,
-          `L${rightX}, ${EDGE}`,
-          `L${rightX}, 0`,
-        ].join(" ")}
-      />
-
-      <animate
-        begin="1s"
-        dur="1s"
-        attributeName="d"
-        repeatCount="indefinite"
-        values={[
-          `M${leftX}, 0`,
-          `L${leftX}, ${EDGE}`,
-          `L${leftBottomX}, ${HEIGHT}`,
-          `L${rightBottomX}, ${HEIGHT}`,
-          `L${rightX}, ${EDGE}`,
-          `L${rightX}, 0`,
-        ].join(" ")}
+        attributeType="XML"
+        repeatCount={1}
+        values={[from.join(""), ";", middle.join(""), ";", to.join("")].join(
+          ""
+        )}
       />
     </path>
   );
