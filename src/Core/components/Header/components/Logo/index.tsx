@@ -7,8 +7,9 @@ const BAR_MARGIN = 2;
 const EDGE = Math.round(CANVAS_HEIGHT * (3 / 4));
 const BANNER_WIDTH = Math.round(CANVAS_WIDTH * 0.7);
 const BANNER_HEIGHT = Math.round(CANVAS_HEIGHT * 0.15);
+const TEXT_WIDTH = BANNER_WIDTH * 0.8;
 const BANNER_BACKGROUND_WIDTH = Math.round(CANVAS_WIDTH * 0.2);
-const BANNER_BACKGROUND_OFFSET = -0.6;
+const BANNER_BACKGROUND_OFFSET = -0.35;
 const BANNER_BACKGROUND_EDGE = CANVAS_WIDTH * 0.05;
 const PRIMARY_COLOR = "#3f9bb2";
 const SECONDARY_COLOR = "#F7ECD0";
@@ -93,24 +94,6 @@ function getBanner() {
 
   return (
     <>
-      {/* Foreground */}
-      <rect
-        fill={PRIMARY_COLOR}
-        x={bannerLeft}
-        width={BANNER_WIDTH}
-        y={bannerTop}
-        height={BANNER_HEIGHT}
-      />
-      <text
-        fill={SECONDARY_COLOR}
-        x={centerX}
-        y={centerY}
-        text-anchor="middle"
-        alignment-baseline="central"
-      >
-        PLUSNEW
-      </text>
-
       {/* Background */}
 
       {/* left background */}
@@ -179,6 +162,26 @@ function getBanner() {
           bannerRight - BANNER_BACKGROUND_WIDTH / 2
         },${bannerTop}`}
       />
+
+      {/* Foreground */}
+      <rect
+        fill={PRIMARY_COLOR}
+        x={bannerLeft}
+        width={BANNER_WIDTH}
+        y={bannerTop}
+        height={BANNER_HEIGHT}
+      />
+      <text
+        font-weight="bold"
+        fill={SECONDARY_COLOR}
+        x={centerX}
+        y={centerY}
+        text-anchor="middle"
+        alignment-baseline="central"
+        textLength={TEXT_WIDTH}
+      >
+        PLUSNEW
+      </text>
     </>
   );
 }
