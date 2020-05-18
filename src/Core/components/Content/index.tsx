@@ -1,9 +1,8 @@
 import plusnew, { Async, component } from "@plusnew/core";
 import { Invalid, NotFound } from "@plusnew/router";
 import DocumentTitle from "shared/Components/DocumentTitle";
-import Error from "shared/Components/Error/index";
-import i18n from "shared/Components/i18n";
 import Loader from "shared/Components/Loader";
+import LoadError from "../util/LoadError";
 import AboutRoute from "./components/AboutRoute";
 import DocumentationRoute from "./components/DocumentationRoute";
 import GuideRoute from "./components/GuideRoute";
@@ -25,19 +24,13 @@ export default component(__dirname, () => (
               <Loader />
             </div>
           }
-        >
-          {() =>
-            // tslint:disable-next-line: space-in-parens
+          constructor={() =>
             import(
               /* webpackChunkName: "site/notFound" */ "./components/NotFound"
-            )
-              .then((module) => <module.default />)
-              .catch(() => (
-                <i18n.Consumer>
-                  {({ base }) => <Error message={base()?.error.load || ""} />}
-                </i18n.Consumer>
-              ))
+            ).catch(() => ({ default: LoadError }))
           }
+        >
+          {(module) => <module.default />}
         </Async>
       </>
     </NotFound>
@@ -51,19 +44,13 @@ export default component(__dirname, () => (
               <Loader />
             </div>
           }
-        >
-          {() =>
-            // tslint:disable-next-line: space-in-parens
+          constructor={() =>
             import(
               /* webpackChunkName: "site/invalid" */ "./components/Invalid"
-            )
-              .then((module) => <module.default />)
-              .catch(() => (
-                <i18n.Consumer>
-                  {({ base }) => <Error message={base()?.error.load || ""} />}
-                </i18n.Consumer>
-              ))
+            ).catch(() => ({ default: LoadError }))
           }
+        >
+          {(module) => <module.default />}
         </Async>
       </>
     </Invalid>

@@ -1,7 +1,6 @@
 import plusnew, { Async, component } from "@plusnew/core";
+import LoadError from "Core/components/util/LoadError";
 import DocumentTitle from "shared/Components/DocumentTitle";
-import Error from "shared/Components/Error";
-import i18n from "shared/Components/i18n";
 import Loader from "shared/Components/Loader";
 import landingPageRoute from "../LandingPageRoute";
 
@@ -17,19 +16,13 @@ export default landingPageRoute.createChildRoute(
             <Loader />
           </div>
         }
-      >
-        {() =>
-          // tslint:disable-next-line: space-in-parens
+        constructor={() =>
           import(
             /* webpackChunkName: "site/about" */ "./components/AboutContent"
-          )
-            .then((module) => <module.default />)
-            .catch(() => (
-              <i18n.Consumer>
-                {({ base }) => <Error message={base()?.error.load || ""} />}
-              </i18n.Consumer>
-            ))
+          ).catch(() => ({ default: LoadError }))
         }
+      >
+        {(module) => <module.default />}
       </Async>
     </>
   ))
