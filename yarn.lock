@@ -1108,10 +1108,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@plusnew/core@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@plusnew/core/-/core-1.2.0.tgz#0b12ea34d2a80377b34371b84cbb8767de0813b4"
-  integrity sha512-61TR3zfiPZwOmWYysxkGRSzZjM7AJagrXbpqrtQFc5tYBZF39ldLJEZscr8HgWW9bO7Pj8Z8yw6G8cswtMMlCw==
+"@plusnew/core@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@plusnew/core/-/core-1.3.0.tgz#270dd20e2780f39b7cf04cc2f27218e9d6acf6ce"
+  integrity sha512-vtWeA807VzB8KkP6D6R+84FWsuhk5Y384mYg0PJjABW+zjmN2LrX/XOBOwBSx6MYQQG+IZMbfP+7zhjcPdsr/Q==
 
 "@plusnew/driver-dom@^1.0.2":
   version "1.0.2"
@@ -1128,10 +1128,10 @@
   resolved "https://registry.yarnpkg.com/@plusnew/i18n/-/i18n-0.2.0.tgz#981f5547babcbee6d9cbfac6bc0b0b20e58b39da"
   integrity sha512-4Y609kSWaKAbDRQEX95MyJn9eAEoS92pzYMIJGYrnTBLE4/5XSW7bj16CEs6k4oN2YzCKdJcL9svWmnNC3bk8w==
 
-"@plusnew/router@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@plusnew/router/-/router-1.2.0.tgz#fa91e3d8b08cb9360330efe97efe3c48d2af7c9e"
-  integrity sha512-Mdmxg9iEfutYU7ovr11GjJRd3T62pJ2jAKC87Ow1Up56TpSiRlUDl8NuD+WNMkU+DBCWj90F10Naa323U1ql4Q==
+"@plusnew/router@1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@plusnew/router/-/router-1.3.0.tgz#63af2a28e640de3c342d02f41fea9cbf95da09c9"
+  integrity sha512-ZHOrURFzC6CP+GQjiCrhakH344dVc9giBGplio9NBFYkCAoFkTTvODsCew/pnassGCidSWlKUXxvMPVbjZDkbQ==
 
 "@sinonjs/commons@^1.7.0":
   version "1.7.1"
