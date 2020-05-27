@@ -1124,9 +1124,9 @@
   integrity sha512-VIibNWmfxZb0PvHrUY5lgbddWbIfdzRx7hqvEUlP6Q9kxqwumIMjfwfDJIcDkkeKN515Letz0uaM+pJlBXH6FQ==
 
 "@plusnew/i18n@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@plusnew/i18n/-/i18n-0.2.0.tgz#981f5547babcbee6d9cbfac6bc0b0b20e58b39da"
-  integrity sha512-4Y609kSWaKAbDRQEX95MyJn9eAEoS92pzYMIJGYrnTBLE4/5XSW7bj16CEs6k4oN2YzCKdJcL9svWmnNC3bk8w==
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@plusnew/i18n/-/i18n-0.2.1.tgz#298a4e2a1adc3673acd8824f091cf78074f35423"
+  integrity sha512-Ci0+IG0WHk6HbEukvVb9CdnayYf5WLG+u8G/qERY1MrBfzKKqe7CDFod9E66aP+/B9EzNKvFU4p+3L9VJNTUXg==
 
 "@plusnew/router@1.3.1":
   version "1.3.1"
