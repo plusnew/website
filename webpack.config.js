@@ -75,6 +75,10 @@ const getConfig = (opt) => ({
     new HtmlWebpackPlugin({
       title: "plusnew",
       minify: false,
+      meta: {
+        revision:
+          "TRAVIS_COMMIT" in process.env ? process.env.TRAVIS_COMMIT : "-",
+      },
     }),
     new BabelMultiTargetPlugin({
       babel: {
@@ -122,7 +126,9 @@ const getConfig = (opt) => ({
       tsconfig: path.join(__dirname, "tsconfig.json"),
     }),
 
-    new MonacoWebpackPlugin(),
+    new MonacoWebpackPlugin({
+      filename: "static/js/[name].worker.js",
+    }),
 
     ...opt.plugins,
   ],
