@@ -1212,9 +1212,9 @@
   integrity sha512-nhd5Rq9wMXR600DVPy29aYrTxONNnbVu0wWYb6CGL1814+ecVzhCyArRuaABIxNNBDIayWutLndglUvjO/hmIA==
 
 "@plusnew/enzyme-adapter@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@plusnew/enzyme-adapter/-/enzyme-adapter-1.0.1.tgz#52b513986f49389f0f7edf4ff33d0cb50dbc481c"
-  integrity sha512-VIibNWmfxZb0PvHrUY5lgbddWbIfdzRx7hqvEUlP6Q9kxqwumIMjfwfDJIcDkkeKN515Letz0uaM+pJlBXH6FQ==
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@plusnew/enzyme-adapter/-/enzyme-adapter-1.1.0.tgz#f7af67762b18a878f9e7b4ae859159ca92e0148a"
+  integrity sha512-bEv8woIzYW2kWTFIpDSwFPS07CXRGwh68O+facZY4jU+5TmucL6Jrs/hcVBbuAGq3E0BZ6PvB5N4NlHiiWd2uA==
 
 "@plusnew/i18n@^0.2.0":
   version "0.2.1"
